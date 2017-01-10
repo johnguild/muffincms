@@ -1,0 +1,12 @@
+{
+    "name": "johnguild/muffincms",
+    "description": "Muffin Content Management System",
+    "authors": [
+        {
+            "name": "John Robin Perez",
+            "email": "johnguild26@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
