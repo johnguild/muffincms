@@ -1,3 +1,3 @@
-<div class="row">
+<div class="container">
 	{{$value->content}}
 </div>

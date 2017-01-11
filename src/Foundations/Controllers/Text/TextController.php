@@ -2,7 +2,9 @@
 
 namespace Johnguild\Muffincms\Foundations\Controllers\Text;
 
+// dependencies
 use Illuminate\Http\Request;
+// models
 
 trait TextController
 {

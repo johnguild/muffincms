@@ -13,7 +13,7 @@ class MuffincmsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // copy all necessary files to application
         $this->publishes([
             __DIR__.'/routes' => base_path('routes/'),
             __DIR__.'/controllers' => base_path('app/http/controllers'),

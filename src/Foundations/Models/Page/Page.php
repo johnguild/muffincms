@@ -2,9 +2,10 @@
 
 namespace Johnguild\Muffincms\Foundations\Models\Page;
 
-// use Illuminate\Database\Eloquent\Model;
+// dependencies
+// models
 
 trait Page
 {
-    //
+  //
 }

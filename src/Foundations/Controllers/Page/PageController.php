@@ -3,107 +3,113 @@
 namespace Johnguild\Muffincms\Foundations\Controllers\Page;
 
 // dependencies
+use App\Http\Controllers\Module\ModuleController;
 use Illuminate\Http\Request;
 // models
 use App\Models\Page\Page;
 
-// development
-use App\Http\Controllers\Module\ModuleController;
 
 
 trait PageController
 {
+  /**
+   * Still thinking where to use these
+   * probably by excluding them in the route?
+   */
+  protected $exceptions = [
+          'products',
+          'category'
+      ];
 
-    protected $exceptions = [
-            'products',
-            'category'
-        ];
+  /**
+   * Page not found view name
+   */    
+  public $notfoundview = 'notfound';
 
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+      //
+  }
 
-    public $notfoundview = 'notfound';
+  /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function create()
+  {
+      //
+  }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+  /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function store(Request $request)
+  {
+      //
+  }
+
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($page)
+  {
+
+    $mypage = Page::where('name', $page)->first();
+
+    if(!$mypage){
+      // DEV -> we want the admin to view a blank page with an option to add this page
+      return view('pages.'.$this->notfoundview);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    $modules = ModuleController::getContents();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    return view('pages.'.$mypage->template, compact('mypage','modules'));
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($page)
-    {
-        $mypage = Page::where('name', $page)->first();
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($page)
+  {
+      //
+  }
 
-        if(!$mypage || ($mypage && !$mypage->public)){
-            return view('pages.'.$this->notfoundview);
-        }
+  /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request, $page)
+  {
+      //
+  }
 
-        $modules = ModuleController::getContents();
-
-        return view('pages.'.$mypage->template, compact('modules'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($page)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $page)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($page)
-    {
-        //
-    }
+  /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function destroy($page)
+  {
+      //
+  }
 
 }

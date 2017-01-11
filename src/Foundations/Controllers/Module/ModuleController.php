@@ -11,6 +11,8 @@ trait ModuleController
 
 	/**
 	 * List of all available modules except Page
+	 * key = module name
+	 * value = applications directory 
 	 */
 	protected static $available = [
 			'\Text'=>'\App\Models\Text'
@@ -23,8 +25,6 @@ trait ModuleController
 	 */
 	public static function getContents(  ){
 		
-		$texts = \App\Models\Text\Text::orderBy('rank','desc')->get();
-
 		$modules = [];
 
 		foreach (self::$available as $key => $mod) {

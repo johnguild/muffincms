@@ -1,18 +1,19 @@
-Muffin CMS
+Muffin Content Management System
 
-DIRECTORIES
+ -The Package lets you make your laravel project into a CMS 
 
-(all files and folders under this package should not be modified/edited)
+Version 1.0
+Compatibility - Laravel 5.3+
 
-Foundations - contains main core traits that controllers and models uses
 
--- The following directories will be copied to the main app for you to modify/copy (See MuffincmsServiceProvider) --
+How to install:
+	1. Create your laravel project
+	2. Run make:auth
+	3. Run vendor:publish
+	4. Edit admin credentials on update user migration
+	5. Run migrate
+	6. In your routes folder copy contents of web.muffin.php to web.php
 
-Routes - contains main route file to be copied to your apps web.php or root/routes/web.php
-Controllers - all controllers the cms uses
-Models - all models the cms uses
-Views - all views the cms uses
-Migrations - all migrations the cms uses
-
+	Start creating your websites pages contents
 
 
