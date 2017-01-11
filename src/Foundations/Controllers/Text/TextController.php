@@ -1,27 +1,11 @@
 <?php
 
-namespace Johnguild\Muffincms\Foundations\Controllers\Page;
+namespace Johnguild\Muffincms\Foundations\Controllers\Text;
 
-// dependencies
 use Illuminate\Http\Request;
-// models
-use App\Models\Page\Page;
 
-// development
-use App\Http\Controllers\Module\ModuleController;
-
-
-trait PageController
+trait TextController
 {
-
-    protected $exceptions = [
-            'products',
-            'category'
-        ];
-
-
-    public $notfoundview = 'notfound';
-
     /**
      * Display a listing of the resource.
      *
@@ -59,17 +43,9 @@ trait PageController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($page)
+    public function show($id)
     {
-        $mypage = Page::where('name', $page)->first();
-
-        if(!$mypage || ($mypage && !$mypage->public)){
-            return view('pages.'.$this->notfoundview);
-        }
-
-        $modules = ModuleController::getContents();
-
-        return view('pages.'.$mypage->template, compact('modules'));
+        //
     }
 
     /**
@@ -78,7 +54,7 @@ trait PageController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($page)
+    public function edit($id)
     {
         //
     }
@@ -90,7 +66,7 @@ trait PageController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $page)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -101,9 +77,8 @@ trait PageController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($page)
+    public function destroy($id)
     {
         //
     }
-
 }

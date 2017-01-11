@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MuffinCreatePagesTable extends Migration
+class MuffinCreateTextsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class MuffinCreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('texts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->default('');
-            $table->boolean('public')->default(false);
+            $table->string('url');
+            $table->integer('rank');
+            $table->string('location');
+            $table->string('content');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class MuffinCreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('texts');
     }
 }
