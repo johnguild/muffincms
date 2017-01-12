@@ -17,7 +17,7 @@ class MuffincmsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/routes' => base_path('routes/'),
             __DIR__.'/controllers' => base_path('app/http/controllers'),
-            __DIR__.'/models' => base_path('app/models'),
+            __DIR__.'/models' => base_path('app/Models'),
             __DIR__.'/views' => base_path('resources/views/'),
             __DIR__.'/migrations' => base_path('database/migrations/'),
         ]);

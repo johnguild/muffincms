@@ -14,10 +14,12 @@ How to install:
             "App\\": "app/",
             "Johnguild\\Muffincms\\": "packages/johnguild/muffincms/src"
         }
+  - Add the package's service provider in your config/app.php under providers
+  			Johnguild\Muffincms\MuffincmsServiceProvider::class,
   - Run composer dump-autoload to update the file
 	- Run make:auth to use laravels authenticable user
 	- Run vendor:publish to automagically copy necessary files of the package
-	- Edit admin credentials on update user table migration
+	- Edit admin credentials on update user table in migration
 	- Run migrate
 	- Update your routes folder by copying contents of web.muffin.php to web.php
 

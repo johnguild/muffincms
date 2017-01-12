@@ -14,8 +14,8 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'Page\PageController@home');
+Route::get('/home', 'Page\PageController@home');
 Route::get('/package', 'TestController@index');
 
 // should the last route
