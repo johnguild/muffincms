@@ -8,16 +8,23 @@ Compatibility - Laravel 5.3+
 
 How to install:
 	- Create your laravel project
-	- Paste the package in root/packages/johnguild/
+	- Run make:auth to use laravels authenticable user
+	- Paste the package in root/packages/johnguild/muffincms
+				root
+					packages
+						johnguild
+							muffincms
+								src
+								composer.json
+								readme.md
+  - Add the package's service provider in your config/app.php under providers
+  			Johnguild\Muffincms\MuffincmsServiceProvider::class,
 	- Add the package in your composer.json under autoload
         "psr-4": {
             "App\\": "app/",
             "Johnguild\\Muffincms\\": "packages/johnguild/muffincms/src"
         }
-  - Add the package's service provider in your config/app.php under providers
-  			Johnguild\Muffincms\MuffincmsServiceProvider::class,
   - Run composer dump-autoload to update the file
-	- Run make:auth to use laravels authenticable user
 	- Run vendor:publish to automagically copy necessary files of the package
 	- Edit admin credentials on update user table in migration
 	- Run migrate
