@@ -27,6 +27,7 @@ How to install:
   - Run composer dump-autoload to update the file
 	- Run vendor:publish to automagically copy necessary files of the package
 	- Edit admin credentials on update user table in migration
+	- Edit User.php, LoginController, RegisterController by copying the generated COPIES below them
 	- Run migrate
 	- Update your routes folder by copying contents of web.muffin.php to web.php
 
