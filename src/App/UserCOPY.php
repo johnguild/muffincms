@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -36,5 +37,18 @@ class User extends Authenticatable
     public function getFullName(  ){
         
         return $this->firstname.' '.$this->lastname;
+    }
+
+    /**
+     * Check whether the user is an admin
+     *
+     * @return boolean
+     */
+    public function isAdmin(  ){
+        
+        if(Auth::user()->id != 1)
+            return false;
+
+        return true;
     }
 }

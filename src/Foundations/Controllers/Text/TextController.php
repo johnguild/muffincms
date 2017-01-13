@@ -5,6 +5,8 @@ namespace Johnguild\Muffincms\Foundations\Controllers\Text;
 // dependencies
 use Illuminate\Http\Request;
 // models
+use App\Models\Text\Text;
+use Auth;
 
 trait TextController
 {
@@ -58,7 +60,17 @@ trait TextController
      */
     public function edit($id)
     {
-        //
+        if(!Auth::user()->isAdmin()){
+            return redirect('/');
+        }
+
+      $text = Text::find($id);
+
+      if(!$text){
+        return redirect('/');
+      }
+
+      return view('texts.edit', compact('text'));
     }
 
     /**
@@ -68,9 +80,23 @@ trait TextController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+      if(!Auth::user()->isAdmin()){
+            return redirect('/');
+        }
+
+      $text = Text::find($request['id']);
+
+      if(!$text){
+        return redirect('/');
+      }
+
+      $text->content = htmlspecialchars($request['content']);
+      $text->save();
+
+      return redirect('/'.$text->url);
     }
 
     /**

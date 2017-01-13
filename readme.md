@@ -8,6 +8,8 @@ Compatibility - Laravel 5.3+
 
 How to install:
 	- Create your laravel project
+	- Install and Integrate https://github.com/UniSharp/laravel-filemanager
+			tutorials : https://www.youtube.com/watch?v=vBzg0Us5MDk
 	- Run make:auth to use laravels authenticable user
 	- Paste the package in root/packages/johnguild/muffincms
 				root

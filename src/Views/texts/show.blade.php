@@ -1,3 +1,3 @@
-<div class="container">
-	{{$value->content}}
+<div class="">
+	{!! htmlspecialchars_decode($value->content) !!}
 </div>

@@ -21,6 +21,7 @@ class MuffincmsServiceProvider extends ServiceProvider
             __DIR__.'/app' => base_path('app/'),
             __DIR__.'/views' => base_path('resources/views/'),
             __DIR__.'/migrations' => base_path('database/migrations/'),
+            __DIR__.'/assets' => base_path('public/'),
         ]);
         // $this->loadViewsFrom(__DIR__.'/views', 'muffincms');
     }
@@ -33,7 +34,7 @@ class MuffincmsServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        // include __DIR__.'/web.php';
+        // include __DIR__.'/Routes/web.php';
         // $this->app->make('Johnguild\Muffincms\TestController');
     }
 }

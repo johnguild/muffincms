@@ -18,7 +18,7 @@ class MuffinCreateTextsTable extends Migration
             $table->string('url');
             $table->integer('rank');
             $table->string('location');
-            $table->string('content');
+            $table->string('content', 2000)->default('');
             $table->timestamps();
         });
     }

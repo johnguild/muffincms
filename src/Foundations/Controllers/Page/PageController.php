@@ -112,4 +112,14 @@ trait PageController
       //
   }
 
+  /**
+   * Redirects to homepage
+   */
+  public function home(  ){
+    
+    $mypage = new Page();
+    $mypage->name = config('app.name');
+    return view('pages.home', compact('mypage'));
+  }
+
 }
