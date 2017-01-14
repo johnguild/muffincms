@@ -22,11 +22,32 @@
 						<i class="fa fa-pencil-square-o" aria-hidden=true></i>
 						edit
 					</a>
-					<a href="#" class="btn btn-danger">
+					<a href="#" class="btn btn-danger delete" data-toggle="modal" data-target="#delete-confirm">
 						<i class="fa fa-times" aria-hidden=true></i>
 						delete
 					</a>
 					<div class="clear"></div>
+					<!-- Modal -->
+					<div class="modal fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this text</h5>
+					      </div>
+					      <!-- <div class="modal-body">
+					        ...
+					      </div> -->
+					      <form method="POST" action="/text/delete/{{$text->id}}" class="">
+					      	<div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+										{{ csrf_field() }}			
+										<button type="submit" name="submit" class="btn btn-danger">Continue</button>
+					      	</div>
+								</form>
+					    </div>
+					  </div>
+					</div>
 				</div>
 			@endif
 		</div>

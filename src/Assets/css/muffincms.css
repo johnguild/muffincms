@@ -50,7 +50,7 @@
 	padding: 2px;
 }
 
-.opt-div a{
+.opt-div a, .opt-div form button{
 	border-radius: 0px;
 	border: 2px;
 }
@@ -80,6 +80,7 @@
 	font-size: 18px;
 	border-radius: 0px;
 }
+
 
 
 /*--- End ---*/

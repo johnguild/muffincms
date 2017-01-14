@@ -20,6 +20,7 @@ Route::get('/package', 'TestController@index');
 
 // text
 Route::get('/text/edit/{id}', 'Text\TextController@edit')->middleware('auth');
+Route::post('/text/delete/{id}', 'Text\TextController@destroy')->middleware('auth');
 Route::post('/text/update', 'Text\TextController@update')->middleware('auth');
 
 // should the last route
