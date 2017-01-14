@@ -19,9 +19,9 @@
 			<textarea cols="15" rows="5" id="text-content" class="ckeditor" name="content">{{$text->content}}</textarea>
 		</div>
 		
-		<div class="form-group">
-			<input type="submit" name="submit" value="Submit" class="btn btn-primary btn-lg">
-			<a id="request-cancel" class="btn btn-default btn-lg">Cancel</a>
+		<div class="form-group edit-div">
+			<input type="submit" name="submit" value="Submit" class="btn btn-primary">
+			<a href="{{url()->previous()}}" id="" class="btn btn-default">Cancel</a>
 		</div>
 	</form>
 </div>

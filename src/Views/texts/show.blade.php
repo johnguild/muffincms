@@ -1,3 +1,1 @@
-<div class="">
-	{!! htmlspecialchars_decode($value->content) !!}
-</div>
+{!! str_replace('&nbsp;', ' ', html_entity_decode($text->content)) !!}

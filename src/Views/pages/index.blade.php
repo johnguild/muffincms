@@ -6,9 +6,30 @@
 
 	<div class="container col-md-12">
 		<!-- text samples -->
-		@include('texts.index', ['data' => $modules['Text'], 'loc'=>'@header', 'tpl'=>'show'])
+		<div class="container">
+			<div class="col-md-4">
+				@include('texts.index', ['data' => $modules['Text'], 'loc'=>'@header', 'view'=>'show', 'opt'=>0, 'conf'=>0])
+			</div>
+			<div class="col-md-4">
+				@include('texts.index', ['data' => $modules['Text'], 'loc'=>'@header', 'view'=>'show', 'opt'=>1, 'conf'=>1])
+			</div>
+			<div class="col-md-4">
+				@include('texts.index', ['data' => $modules['Text'], 'loc'=>'@header', 'view'=>'show', 'opt'=>2, 'conf'=>2])
+			</div>
+		</div>
+
 		<hr>
-		@include('texts.index', ['data' => $modules['Text'], 'loc'=>'@body', 'tpl'=>'show'])
+		<div class="container">
+			<div class="col-md-4">	
+				@include('texts.index', ['data' => $modules['Text'], 'loc'=>'@body', 'view'=>'show', 'opt'=>0, 'conf'=>0])
+			</div>
+			<div class="col-md-4">	
+				@include('texts.index', ['data' => $modules['Text'], 'loc'=>'@body', 'view'=>'show', 'opt'=>1, 'conf'=>1])
+			</div>
+			<div class="col-md-4">	
+				@include('texts.index', ['data' => $modules['Text'], 'loc'=>'@body', 'view'=>'show', 'opt'=>2, 'conf'=>2])
+			</div>
+		</div>
 	</div>
 
 @endsection

@@ -93,7 +93,7 @@ trait TextController
         return redirect('/');
       }
 
-      $text->content = htmlspecialchars($request['content']);
+      $text->content = htmlentities($request['content']);
       $text->save();
 
       return redirect('/'.$text->url);

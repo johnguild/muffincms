@@ -1,0 +1,85 @@
+/*--- Configure Button ---*/
+.conf-btn{
+	font-size: 18px;
+}
+
+.conf-hvr-btn{
+	font-size: 18px;
+	display: none;
+}
+
+.w-conf-hvr:hover .conf-hvr-btn{
+	display: block;
+}
+
+.w-conf > .dropdown > .submenu, .w-conf-hvr > .dropdown > .submenu{
+	display:block;
+	list-style-type: none;
+	position:absolute;
+	padding: 2px;
+	top: 16px;
+	right: 9px;
+	background-color: #fff;
+	width: 100px;
+	text-align: center;
+  z-index: 9999;
+  display: none;
+  border: solid 1px #ddd;
+}
+
+.w-conf .dropdown .submenu ul li{
+	list-style-type: none;
+	text-decoration: none;
+}
+
+.w-conf > .dropdown:hover .submenu, .w-conf-hvr > .dropdown:hover .submenu{
+	display: block;
+}
+
+.w-conf .submenu li:hover, .w-conf-hvr .submenu li:hover{
+	background-color: #ddd;
+}
+
+.w-conf .submenu li a:hover, .w-conf-hvr .submenu li a:hover{
+	text-decoration: none;
+}
+/*--- End ---*/
+
+/*--- Option Styling ---*/
+.opt-div{
+	padding: 2px;
+}
+
+.opt-div a{
+	border-radius: 0px;
+	border: 2px;
+}
+
+.opt-div .clear{
+	clear: both;
+}
+
+.w-opt-hvr .opt-div{
+	display: none;
+	z-index: 999999;
+	margin-left: auto;
+	transition: all 3s linear;
+}
+
+.w-opt-hvr:hover .opt-div{
+	display:block;
+}
+
+.w-opt, .w-opt-hvr:hover{
+
+}
+/*--- End ---*/
+
+/*--- Edit Page ----*/
+.edit-div a, .edit-div input{
+	font-size: 18px;
+	border-radius: 0px;
+}
+
+
+/*--- End ---*/
