@@ -16,46 +16,46 @@ Includes
 
 How to install:
 
-	- Create your laravel project.
+			- Create your laravel project.
 
-	- Install and Integrate https://github.com/UniSharp/laravel-filemanager
+			- Install and Integrate https://github.com/UniSharp/laravel-filemanager
 
-			tutorials : https://www.youtube.com/watch?v=vBzg0Us5MDk
+					tutorials : https://www.youtube.com/watch?v=vBzg0Us5MDk
 
-	- Run make:auth to use laravels authenticable user
+			- Run make:auth to use laravels authenticable user
 
-	- Paste the package in root/packages/johnguild/muffincms
+			- Paste the package in root/packages/johnguild/muffincms
 
-  - Add the package's service provider in your config/app.php under providers.
+			- Add the package's service provider in your config/app.php under providers.
 
-  			Johnguild\Muffincms\MuffincmsServiceProvider::class,
+						Johnguild\Muffincms\MuffincmsServiceProvider::class,
 
-	- Add the package in your composer.json under autoload.
+			- Add the package in your composer.json under autoload.
 
-        "psr-4": {
+			      "psr-4": {
 
-            "App\\": "app/",
+			          "App\\": "app/",
 
-            "Johnguild\\Muffincms\\": "packages/johnguild/muffincms/src"
+			          "Johnguild\\Muffincms\\": "packages/johnguild/muffincms/src"
 
-        }
+			      }
 
-  - Run composer dump-autoload to update the file.
+			- Run composer dump-autoload to update the file.
 
-	- Run vendor:publish to automagically copy necessary files of the package
+			- Run vendor:publish to automagically copy necessary files of the package
 
-	- Edit admin credentials on update user table in migration
+			- Edit admin credentials on update user table in migration
 
-	- Edit User.php, LoginController, RegisterController by copying the generated COPIES below them
+			- Edit User.php, LoginController, RegisterController by copying the generated COPIES below them
 
-	- Run migrate
+			- Run migrate
 
-	- Update your routes folder by copying contents of web.muffin.php to web.php
+			- Update your routes folder by copying contents of web.muffin.php to web.php
 
 
 	Start creating your websites pages contents
 	
-	
+
 	Notes: once installed you should NOT delete the packages
 
 
