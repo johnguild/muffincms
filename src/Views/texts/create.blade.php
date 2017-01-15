@@ -1,24 +1,23 @@
 @extends('layouts.edit')
 
-@section('title', 'Edit Text')
+@section('title', 'Creating Text')
 
 @section('content')
 <div class="container">
 	<h2>Editing Text</h2>
-	<form method="POST" action="/text/update" class="form">
+	<form method="POST" action="/text/store" class="form">
 		{{ csrf_field() }}
-		<input type="hidden" name="id" value="{{$text->id}}">
 
 		<div class="form-group form-inline">
 				<label for="text-url-location">Url</label>
-				<input type="text" id="text-url-location" name="url_location" value="{{$text->url}}" readonly="readonly" class="form-control">	
+				<input type="text" id="text-url-location" name="url" value="{{$url}}" readonly="readonly" class="form-control">	
 				<label for="text-url-location">Location</label>
-				<input type="text" id="text-url-location" name="url_location" value="{{$text->location}}" readonly="readonly" class="form-control">
+				<input type="text" id="text-url-location" name="location" value="{{$location}}" readonly="readonly" class="form-control">
 		</div>
 
 		<div class="form-group">
 			<label for="text-content">Content</label>
-			<textarea cols="15" rows="5" id="text-content" class="ckeditor" name="content">{{$text->content}}</textarea>
+			<textarea cols="15" rows="5" id="text-content" class="ckeditor" name="content"></textarea>
 		</div>
 		
 		<div class="form-group edit-div">

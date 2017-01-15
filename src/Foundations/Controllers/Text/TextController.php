@@ -10,6 +10,10 @@ use Auth;
 
 trait TextController
 {
+
+  public $pagenotfound = 'pages.notfound';
+
+
   /**
    * Display a listing of the resource.
    *
@@ -25,9 +29,16 @@ trait TextController
    *
    * @return \Illuminate\Http\Response
    */
-  public function create()
+  public function create($myurl, $myloc)
   {
-      //
+    if(!Auth::user()->isAdmin()){
+        return redirect('/');
+    }
+    
+    $url = ($myurl ? $myurl : '');
+    $location = ($myloc ? $myloc : '');
+
+    return view('texts.create', compact('url','location'));
   }
 
   /**
@@ -38,7 +49,28 @@ trait TextController
    */
   public function store(Request $request)
   {
-      //
+    if(!Auth::user()->isAdmin()){
+        return redirect('/');
+    }
+
+    $res = Text::select('rank')
+                ->where([
+                    ['url', $request['url']],
+                    ['location', $request['location']]
+                  ])
+                ->first();
+    $rank = ($res ? $res["rank"]+1 : 1);
+
+
+    $text = new Text();
+    $text->url = $request['url'];
+    $text->location = $request['location'];
+    $text->content = $request['content'];
+    $text->rank = $rank;
+    $text->save();
+
+
+    return redirect($text->url);
   }
 
   /**
@@ -109,5 +141,16 @@ trait TextController
     $text->delete();
 
     return redirect('/'.$back);
+  }
+
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  protected function notfound()
+  {
+    return view($this->pagenotfound);
   }
 }

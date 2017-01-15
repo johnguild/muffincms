@@ -13,6 +13,7 @@
   <!-- Styles -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link href="/css/sweetalert/sweetalert.css" rel="stylesheet">
   <link href="/css/app.css" rel="stylesheet">
   @if(Auth::check() && Auth::user()->isAdmin())
     <link href="/css/muffincms.css" rel="stylesheet">
@@ -32,6 +33,7 @@
   <!-- Scripts -->
   <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="/js/sweetalert/sweetalert.min.js"></script>
   <script src="/js/tinymce/tinymce.min.js"></script>
   <script type="text/javascript">
     var editor_config = {
@@ -78,6 +80,7 @@
     };
     tinymce.init(editor_config);
   </script>
+  <script src="/js/muffincms.js"></script>
   <script src="/js/app.js"></script>
 
 

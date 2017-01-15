@@ -23,13 +23,16 @@ trait ModuleController
 	 * Retrieve's all modules and their contents
 	 * @return array
 	 */
-	public static function getContents(  ){
+	public static function getContents( $url = null ){
 		
 		$modules = [];
 
 		foreach (self::$available as $key => $mod) {
 			$model = $mod . $key;
-			$modules[stripslashes($key)] = $model::orderBy('rank','desc')->get();
+			if($url)
+				$modules[stripslashes($key)] = $model::where('url', $url)->orderBy('rank','desc')->get();
+			else
+				$modules[stripslashes($key)] = $model::orderBy('rank','desc')->get();
 		}
 
 		return $modules;

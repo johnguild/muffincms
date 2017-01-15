@@ -16,12 +16,14 @@ Auth::routes();
 
 Route::get('/', 'Page\PageController@home');
 Route::get('/home', 'Page\PageController@home');
-Route::get('/package', 'TestController@index');
 
 // text
 Route::get('/text/edit/{id}', 'Text\TextController@edit')->middleware('auth');
-Route::post('/text/delete/{id}', 'Text\TextController@destroy')->middleware('auth');
+Route::get('/text/create/url/{myurl}/location/{myloc}', 'Text\TextController@create')->middleware('auth');
+Route::get('/text/delete/{id}', 'Text\TextController@destroy')->middleware('auth');
+Route::post('/text/store', 'Text\TextController@store')->middleware('auth');
 Route::post('/text/update', 'Text\TextController@update')->middleware('auth');
+Route::get('/text/{section}', 'Text\TextController@notfound')->where(['section' => '.*']);
 
 // should the last route
 Route::get('/{page}', 'Page\PageController@show');

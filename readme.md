@@ -5,6 +5,10 @@ Muffin Content Management System
 Version 1.0
 Compatibility - Laravel 5.3+
 
+Includes
+	- TinyMCE 4
+	- Font Awesome 4.7.0
+	- Sweetalert
 
 How to install:
 	- Create your laravel project

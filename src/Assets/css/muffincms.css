@@ -75,6 +75,15 @@
 }
 /*--- End ---*/
 
+
+/*--- Add ---*/
+.w-add a{
+	border-radius: 0px;
+	border: 2px;
+}
+/*--- End ---*/
+
+
 /*--- Edit Page ----*/
 .edit-div a, .edit-div input{
 	font-size: 18px;

@@ -24,7 +24,7 @@ trait PageController
   /**
    * Page not found view name
    */    
-  public $notfoundview = 'notfound';
+  public $pagenotfound = 'pages.notfound';
 
   /**
    * Display a listing of the resource.
@@ -70,10 +70,10 @@ trait PageController
 
     if(!$mypage){
       // DEV -> we want the admin to view a blank page with an option to add this page
-      return view('pages.'.$this->notfoundview);
+      return view($this->pagenotfound);
     }
 
-    $modules = ModuleController::getContents();
+    $modules = ModuleController::getContents($mypage->name);
 
     return view('pages.'.$mypage->template, compact('mypage','modules'));
   }
