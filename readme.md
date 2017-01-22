@@ -8,11 +8,11 @@ Compatibility - Laravel 5.3+
 
 Includes
 
-	- TinyMCE 4
+			- TinyMCE 4
 
-	- Font Awesome 4.7.0
+			- Font Awesome 4.7.0
 
-	- Sweetalert
+			- Sweetalert
 
 How to install:
 
@@ -53,10 +53,11 @@ How to install:
 			- Update your routes folder by copying contents of web.muffin.php to web.php
 
 
-	Start creating your websites pages contents
-	
 
-	Notes: once installed you should NOT delete the packages
+Start creating your websites pages contents
+
+
+Notes: once installed you should NOT delete the packages
 
 
 

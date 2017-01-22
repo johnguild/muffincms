@@ -1,22 +1,31 @@
 <?php
 
-namespace Johnguild\Muffincms\Foundations\Controllers\Text;
+namespace Johnguild\Muffincms\Foundations\Controllers\Link;
 
 // dependencies
 use Illuminate\Http\Request;
 // models
-use App\Models\Text\Text;
+use App\Models\Link\Link;
 use Auth;
 
-trait TextController
+trait LinkController
 {
-
 
   /**
    *  What view to show when /text/{wildcard} was not found
    */
   public $pagenotfound = 'pages.notfound';
 
+
+  /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function index()
+  {
+      //
+  }
 
   /**
    * Show the form for creating a new resource.
@@ -30,7 +39,7 @@ trait TextController
     $url = ($myurl ? $myurl : '');
     $location = ($myloc ? $myloc : '');
 
-    return view('texts.create', compact('url','location'));
+    return view('links.create', compact('url','location'));
   }
 
   /**
@@ -42,22 +51,36 @@ trait TextController
   public function store(Request $request)
   {
 
-    $this->isForAdmin();
+    $this->isForAdmin(); 
     $this->validator($request->all())->validate();
 
-    $res = Text::select('rank')->where([['url', $request['url']],['location', $request['location']]])->first();
+    $res = Link::select('rank')->where([['url', $request['url']],['location', $request['location']]])->first();
     $rank = ($res ? $res["rank"]+1 : 1);
 
-    $text = new Text();
-    $text->url = $request['url'];
-    $text->location = $request['location'];
-    $text->content = htmlentities($request['content']);
-    $text->rank = $rank;
-    $text->save();
+    $link = new Link();
+    $link->url = $request['url'];
+    $link->location = $request['location'];
+    $link->rank = $rank;
+    $link->title = $request['title'];
+    $link->address = $request['address'];
+    $link->alt = $request['alt'];
+    $link->image = $request['image'];
+    $link->new_window = ($request['new_window'] ? 1:0);
+    $link->save();
 
-    return redirect($text->url);
+    return redirect($link->url);
   }
 
+  /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function show($id)
+  {
+      //
+  }
 
   /**
    * Show the form for editing the specified resource.
@@ -68,11 +91,10 @@ trait TextController
   public function edit($id)
   {
     $this->isForAdmin();
+    $link = Link::find($id);
+    if(!$link) return redirect('/');
 
-    $text = Text::find($id);
-    if(!$text) return redirect('/');
-
-    return view('texts.edit', compact('text'));
+    return view('links.edit', compact('link'));
   }
 
   /**
@@ -88,13 +110,19 @@ trait TextController
     $this->isForAdmin();
     $this->validator($request->all())->validate();
 
-    $text = Text::find($request['id']);
-    if(!$text) return redirect('/');
+    $link = Link::find($request['id']);
+    if(!$link) return redirect('/');
 
-    $text->content = htmlentities($request['content']);
-    $text->save();
+    $link->url = $request['url'];
+    $link->location = $request['location'];
+    $link->title = $request['title'];
+    $link->address = $request['address'];
+    $link->alt = $request['alt'];
+    $link->image = $request['image'];
+    $link->new_window = ($request['new_window'] ? 1:0);
+    $link->save();
 
-    return redirect('/'.$text->url);
+    return redirect('/'.$link->url);
   }
 
   /**
@@ -106,17 +134,17 @@ trait TextController
   public function destroy($id)
   {
     $this->isForAdmin();
-    $text = Text::find($id);
-    if(!$text) return redirect('/');
-
-    $back = $text->url;
-    $text->delete();
+    $link = Link::find($id);
+    if(!$link) return redirect('/');
+   
+    $back = $link->url;
+    $link->delete();
 
     return redirect('/'.$back);
   }
 
   /**
-   * Display view for page not found
+   * Display the specified resource.
    *
    * @param  int  $id
    * @return \Illuminate\Http\Response
@@ -126,7 +154,7 @@ trait TextController
     return view($this->pagenotfound);
   }
 
-  /**
+   /**
    * Check for admin role
    * @param int $id
    */
@@ -134,7 +162,5 @@ trait TextController
     if(!Auth::user()->isAdmin())
       return redirect('/');
   }
-
-
 
 }

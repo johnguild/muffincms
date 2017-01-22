@@ -15,7 +15,8 @@ trait ModuleController
 	 * value = applications directory 
 	 */
 	protected static $available = [
-			'\Text'=>'\App\Models\Text'
+			'\Text'=>'\App\Models\Text',
+			'\Link'=>'\App\Models\Link'
 		];
 
 

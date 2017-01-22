@@ -30,6 +30,7 @@
 .w-conf .dropdown .submenu ul li{
 	list-style-type: none;
 	text-decoration: none;
+	width: 100%;
 }
 
 .w-conf > .dropdown:hover .submenu, .w-conf-hvr > .dropdown:hover .submenu{
