@@ -88,7 +88,7 @@ trait PageController
    */
   public function edit($page)
   {
-      //
+      // 
   }
 
   /**
