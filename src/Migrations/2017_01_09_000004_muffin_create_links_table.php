@@ -19,6 +19,7 @@ class MuffinCreateLinksTable extends Migration
             $table->integer('rank');
             $table->string('location');
             $table->string('title')->default('');
+            $table->string('address')->default('');
             $table->string('alt')->default('');
             $table->string('image', 1000)->default('');
             $table->boolean('new_window')->default(false);

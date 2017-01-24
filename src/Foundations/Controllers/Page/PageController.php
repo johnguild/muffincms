@@ -66,7 +66,7 @@ trait PageController
   public function show($page)
   {
 
-    $mypage = Page::where('name', '/'.$page)->first();
+    $mypage = Page::where('name', $page)->first();
 
     if(!$mypage){
       // DEV -> we want the admin to view a blank page with an option to add this page
