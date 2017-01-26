@@ -17,6 +17,10 @@ Auth::routes();
 Route::get('/', 'Page\PageController@home');
 Route::get('/home', 'Page\PageController@home');
 
+// admin
+Route::get('/admin', 'Admin\AdminController@dashboard');
+Route::get('/dashboard', 'Admin\AdminController@dashboard');
+
 // text
 Route::get('/text/edit/{id}', 'Text\TextController@edit')->middleware('auth');
 Route::get('/text/create/url/{myurl}/location/{myloc}', 'Text\TextController@create')->middleware('auth');

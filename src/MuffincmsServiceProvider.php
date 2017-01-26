@@ -49,6 +49,12 @@ class MuffincmsServiceProvider extends ServiceProvider
         $this->publishes([
            __DIR__.'/assets' => base_path('public/'),
         ], 'muffin_assets');
+
+
+        $this->publishes([
+            __DIR__.'/app' => base_path('app/'),
+            __DIR__.'/controllers/auth' => base_path('app/http/controllers/auth'),
+        ], 'muffin_auth');
         // $this->loadViewsFrom(__DIR__.'/views', 'muffincms');
     }
 

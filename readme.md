@@ -18,12 +18,13 @@ How to install:
 
 			- Create your laravel project.
 
+			- Run make:auth to use laravels authenticable user
+
 			- Install and Integrate https://github.com/UniSharp/laravel-filemanager
 
 					tutorials : https://www.youtube.com/watch?v=vBzg0Us5MDk
 
-			- Run make:auth to use laravels authenticable user
-
+			
 			- Paste the package in root/packages/johnguild/muffincms
 
 			- Add the package's service provider in your config/app.php under providers.
@@ -42,15 +43,13 @@ How to install:
 
 			- Run composer dump-autoload to update the file.
 
-			- Run vendor:publish to automagically copy necessary files of the package
+			- Run art vendor:publish --tag=muffin_cms
+
+			- Run art vendor:publish --tag=muffin_auth --force
 
 			- Edit admin credentials on update user table in migration
 
-			- Edit User.php, LoginController, RegisterController by copying the generated COPIES below them
-
 			- Run migrate
-
-			- Update your routes folder by copying contents of web.muffin.php to web.php
 
 
 
