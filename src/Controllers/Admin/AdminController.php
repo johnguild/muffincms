@@ -45,23 +45,6 @@ class AdminController extends Controller
   }
 
 
-  public function create($module){
-    switch ($module) {
-      case 'posts':
-        return view('posts.create');
-        break;
-      case 'pages':
-        return view('pages.create');
-        break;
-      case 'settings':
-        return view('settings.create');
-        break;
-      default:
-        return view('pages.notfound');
-        break;
-    }
-  }
-
   /**
    * Check for admin role
    * @param int $id

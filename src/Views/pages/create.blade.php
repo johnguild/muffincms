@@ -19,19 +19,24 @@
 				@endif
 			</div>
 
-			<div class="form-group {{ $errors->has('public') ? ' has-error' : '' }}">
-				<label for="page-public">Publicity</label>
-				<input type="text" id="page-public" name="public" value="{{old('public')}}" class="form-control">	
-				@if ($errors->has('public'))
-					<span class="help-block">
-					    <strong>{{ $errors->first('public') }}</strong>
-					</span>
-				@endif
+			<div class="checkbox">
+		    	<label>
+					<input type="checkbox" name="public" @if(old('public'))checked="checked" @endif> Open to public
+			    </label>
 			</div>
+
+			<div class="form-group">
+			    <label for="page-template">Select a template</label>
+			    <select class="form-control" id="page-template" name="template">
+			      @foreach($templates as $tpl)
+			      	<option value="{{$tpl}}" {{(old('template') == $tpl ? "selected":"") }}>{{$tpl}}</option>
+			      @endforeach
+			    </select>
+			  </div>
 			
 			<div class="form-group edit-div">
 				<input type="submit" name="submit" value="Submit" class="btn btn-primary">
-				<a href="{{URL::previous()}}" id="" class="btn btn-default">Cancel</a>
+				<a href="/admin/pages" id="" class="btn btn-default">Cancel</a>
 			</div>
 		</form>
 	</div>

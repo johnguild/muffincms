@@ -22,10 +22,10 @@ Route::get('/admin', 'Admin\AdminController@dashboard');
 Route::get('/dashboard', 'Admin\AdminController@dashboard');
 Route::get('/admin/posts', 'Admin\AdminController@posts');
 Route::get('/admin/pages', 'Admin\AdminController@pages');
-Route::get('/admin/{module}/create', 'Admin\AdminController@create');// all create here
 
 // pages
 Route::get('/page/edit/{id}', 'Page\PageController@edit')->middleware('auth');
+Route::get('/page/create/', 'Page\PageController@create')->middleware('auth');
 Route::post('/page/store', 'Page\PageController@store')->middleware('auth');
 Route::post('/page/update', 'Page\PageController@update')->middleware('auth');
 Route::get('/page/delete/{id}', 'Page\PageController@destroy')->middleware('auth');

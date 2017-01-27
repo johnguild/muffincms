@@ -7,7 +7,7 @@ use App\Http\Controllers\Module\ModuleController;
 use Illuminate\Http\Request;
 // models
 use App\Models\Page\Page;
-
+use Auth;
 
 
 trait PageController
@@ -43,10 +43,18 @@ trait PageController
    */
   public function create()
   {
-      //
+    $this->userCheck('create');
+    $templates = \File::allFiles(resource_path('views/pages'));
+    foreach ($templates as $key => $value) {
+      $templates[$key] = str_replace(array('.blade.php','views/pages/'), '', strstr((string)$value, 'views/pages/'));
+    }
+    $to_remove = array('create','edit','admin','notfound');
+    $templates = array_diff($templates, $to_remove);
+
+    return view('pages.create', compact('templates'));
   }
 
-  /**
+   /**
    * Store a newly created resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
@@ -54,7 +62,17 @@ trait PageController
    */
   public function store(Request $request)
   {
-      //
+
+    $this->userCheck('store');
+    $this->validator($request->all())->validate();
+
+    $page = new Page();
+    $page->name = strtolower($request['name']);
+    $page->public = isset($request['public']) ? true:false;
+    $page->template = isset($request['template']) ? $request['template']:'index';
+    $page->save();
+
+    return redirect('/admin/pages');
   }
 
   /**
@@ -109,9 +127,15 @@ trait PageController
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($page)
+  public function destroy($id)
   {
-      //
+    $this->userCheck('delete');
+    $page = Page::find($id);
+    if(!$page) return redirect('/admin/pages');
+
+    $page->delete();
+
+    return redirect('/admin/pages');
   }
 
   /**
@@ -122,6 +146,26 @@ trait PageController
     $mypage = new Page();
     $mypage->name = config('app.name');
     return view('pages.home', compact('mypage'));
+  }
+
+
+  /**
+   * Check for admin role
+   * @param int $id
+   */
+  private function userCheck($a){
+    switch ($a) {
+      case 'store':
+      case 'edit':
+      case 'update':
+      case 'delete':
+        if(!Auth::user()->isAdmin())
+          return redirect('/');
+        break;
+      default:
+        return false;
+        break;
+    }
   }
 
 }

@@ -1,10 +1,11 @@
 $(document).ready(function(){
 	$(".opt-div a.delete").click(function(e){
 		var path = $(this).attr('href');
+		var mod = $(this).attr('data-mod');
 		e.preventDefault();
 			swal({
 			  title: "Are you sure?",
-			  text: "You are about to delete this text",
+			  text: "You are about to delete this "+mod,
 			  type: "warning",
 			  showCancelButton: true,
 			  confirmButtonColor: "#DD6B55",

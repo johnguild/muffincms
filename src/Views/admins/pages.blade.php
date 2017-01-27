@@ -25,7 +25,7 @@
                         Pages are the representation of your site, just like a book pages contains the elements you want the viewer to see
 
                     </p>
-                    <a href="/admin/pages/create" class="btn btn-primary" class="pull-right col-md-3 text-right">
+                    <a href="/page/create" class="btn btn-primary" class="pull-right col-md-3 text-right">
                         <i class="fa fa-pencil-square-o" aria-hidden=true></i>
                         Create New
                     </a>
@@ -56,11 +56,11 @@
                                     </td>
                                     <td>
                                         <div class="opt-div">
-                                            <a href="/admin/pages/edit/{{$page->id}}" class="btn btn-info">
+                                            <a href="/page/edit/{{$page->id}}" class="btn btn-info">
                                                 <i class="fa fa-pencil-square-o" aria-hidden=true></i>
                                                 edit
                                             </a>
-                                            <a href="/admin/pages/delete/{{$page->id}}" class="btn btn-danger delete" data-mod="text">
+                                            <a href="/page/delete/{{$page->id}}" class="btn btn-danger delete" data-mod="page">
                                                 <i class="fa fa-times" aria-hidden=true></i>
                                                 delete
                                             </a>
