@@ -16,8 +16,10 @@
   <link href="/css/sweetalert/sweetalert.css" rel="stylesheet">
   <link href="/css/app.css" rel="stylesheet">
   @if(Auth::check() && Auth::user()->isAdmin())
-    <link href="/css/muffincms.css" rel="stylesheet">
+    <link href="/css/muffincms/muffincms.css" rel="stylesheet">
   @endif
+
+  @yield('stylesheet')
 
   <!-- Scripts -->
   <script>
@@ -38,7 +40,9 @@
   <!-- custom script that should be called on layout view only -->
   <script src="/js/app.js"></script>
   <script src="/vendor/laravel-filemanager/js/lfm.js"></script>
-  <script src="/js/muffincms.js"></script>
+  @if(Auth::check() && Auth::user()->isAdmin())
+  <script src="/js/muffincms/muffincms.js"></script>
+  @endif
 
   @yield('script')
 </body>
