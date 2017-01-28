@@ -44,12 +44,7 @@ trait PageController
   public function create()
   {
     $this->userCheck('create');
-    $templates = \File::allFiles(resource_path('views/pages'));
-    foreach ($templates as $key => $value) {
-      $templates[$key] = str_replace(array('.blade.php','views/pages/'), '', strstr((string)$value, 'views/pages/'));
-    }
-    $to_remove = array('create','edit','admin','notfound');
-    $templates = array_diff($templates, $to_remove);
+    $templates = $this->existingTemplates();
 
     return view('pages.create', compact('templates'));
   }
@@ -64,7 +59,7 @@ trait PageController
   {
 
     $this->userCheck('store');
-    $this->validator($request->all())->validate();
+    $this->validator($request->all(), $this->getRulesTo('store'))->validate();
 
     $page = new Page();
     $page->name = strtolower($request['name']);
@@ -104,21 +99,37 @@ trait PageController
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($page)
+  public function edit($id)
   {
-      // 
+    $this->userCheck('edit');
+    $page = Page::find($id);
+    if(!$page) return redirect('/');
+
+    $templates = $this->existingTemplates();
+    return view('pages.edit', compact('page', 'templates'));
   }
 
   /**
-   * Update the specified resource in storage.
+   * Updates an existing resource in storage.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $page)
+  public function update(Request $request)
   {
-      //
+    $this->userCheck('update');
+    
+    $page = Page::find($request['id']);
+    if(!$page) return redirect('/');
+
+    $this->validator($request->all(), $this->getRulesTo('update', $request['id']))->validate();
+
+    $page->name = strtolower($request['name']);
+    $page->public = isset($request['public']) ? true:false;
+    $page->template = isset($request['template']) ? $request['template']:'index';
+    $page->save();
+
+    return redirect('/admin/pages');
   }
 
   /**
@@ -148,13 +159,29 @@ trait PageController
     return view('pages.home', compact('mypage'));
   }
 
+  /**
+   * Get all existing pages tempaltes
+   * @return array
+   */
+
+  private function existingTemplates()
+  {
+    $templates = \File::allFiles(resource_path('views/pages'));
+    foreach ($templates as $key => $value) {
+      $templates[$key] = str_replace(array('.blade.php','views/pages/'), '', strstr((string)$value, 'views/pages/'));
+    }
+    $to_remove = array('create','edit','admin','notfound');
+    $templates = array_diff($templates, $to_remove);
+    return $templates;
+  }
 
   /**
    * Check for admin role
-   * @param int $id
+   * @param string $a
    */
   private function userCheck($a){
     switch ($a) {
+      case 'create':
       case 'store':
       case 'edit':
       case 'update':

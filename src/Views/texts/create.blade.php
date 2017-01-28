@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-	<h2>Editing Text</h2>
+	<h2>Creating New Text</h2>
 	<form method="POST" action="/text/store" class="form">
 		{{ csrf_field() }}
 

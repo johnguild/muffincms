@@ -1,6 +1,6 @@
 @extends('layouts.edit')
 
-@section('title', 'Creating Link')
+@section('title', 'Creating New Link')
 
 @section('content')
 <div class="container">

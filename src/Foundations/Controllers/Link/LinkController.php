@@ -34,7 +34,7 @@ trait LinkController
    */
   public function create($myurl, $myloc)
   {
-    $this->isForAdmin();
+    $this->userCheck('create');
     
     $url = ($myurl ? $myurl : '');
     $location = ($myloc ? $myloc : '');
@@ -50,9 +50,8 @@ trait LinkController
    */
   public function store(Request $request)
   {
-
-    $this->isForAdmin(); 
-    $this->validator($request->all())->validate();
+    $this->userCheck('store');
+    $this->validator($request->all(), $this->getRulesTo('store'))->validate();
 
     $res = Link::select('rank')->where([['url', $request['url']],['location', $request['location']]])->first();
     $rank = ($res ? $res["rank"]+1 : 1);
@@ -90,7 +89,7 @@ trait LinkController
    */
   public function edit($id)
   {
-    $this->isForAdmin();
+    $this->userCheck('edit');
     $link = Link::find($id);
     if(!$link) return redirect('/');
 
@@ -106,12 +105,11 @@ trait LinkController
    */
   public function update(Request $request)
   {
-
-    $this->isForAdmin();
-    $this->validator($request->all())->validate();
-
+    $this->userCheck('update');
     $link = Link::find($request['id']);
     if(!$link) return redirect('/');
+
+    $this->validator($request->all(), $this->getRulesTo('update', $request['id']))->validate();
 
     $link->url = $request['url'];
     $link->location = $request['location'];
@@ -133,7 +131,7 @@ trait LinkController
    */
   public function destroy($id)
   {
-    $this->isForAdmin();
+    $this->userCheck('delete');
     $link = Link::find($id);
     if(!$link) return redirect('/');
    
@@ -154,13 +152,24 @@ trait LinkController
     return view($this->pagenotfound);
   }
 
-   /**
+  /**
    * Check for admin role
-   * @param int $id
+   * @param string $a
    */
-  private function isForAdmin(){
-    if(!Auth::user()->isAdmin())
-      return redirect('/');
+  private function userCheck($a){
+    switch ($a) {
+      case 'create':
+      case 'store':
+      case 'edit':
+      case 'update':
+      case 'delete':
+        if(!Auth::user()->isAdmin())
+          return redirect('/');
+        break;
+      default:
+        return false;
+        break;
+    }
   }
 
 }

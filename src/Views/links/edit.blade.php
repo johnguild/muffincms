@@ -1,6 +1,6 @@
 @extends('layouts.edit')
 
-@section('title', 'Edit Link')
+@section('title', 'Editing Link')
 
 @section('content')
 <!-- <pre>

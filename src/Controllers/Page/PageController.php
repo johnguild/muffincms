@@ -22,11 +22,31 @@ class PageController extends Controller
    * @param  array  $data
    * @return \Illuminate\Contracts\Validation\Validator
    */
-  protected function validator(array $data)
-  {
-      return Validator::make($data, [
-          'name'      => 'required|max:255|unique:pages',
-      ]);
+  protected function validator(array $data, array $rules)
+  {   
+    return Validator::make($data, $rules);  
+  }
+
+  /**
+   * Get the appropriate rules for the request method
+   * @param string $to
+   * @param array $data
+   * @return array $data
+   */
+  private function getRulesTo($to='store', $id=null){
+    switch ($to) {
+      case 'update':
+        return [
+          'name'  => 'required|max:255|unique:pages,name,'.$id,
+        ];
+        break;
+      case 'store':
+      default:
+        return [
+          'name'  => 'required|max:255|unique:pages',
+        ];
+        break;
+    }
   }
 
 
@@ -40,9 +60,33 @@ class PageController extends Controller
   {
 
     $this->userCheck('store');
-    $this->validator($request->all())->validate();
+    $this->validator($request->all(), $this->getRulesTo('store'))->validate();
 
     $page = new Page();
+    $page->name = strtolower($request['name']);
+    $page->public = isset($request['public']) ? true:false;
+    $page->template = isset($request['template']) ? $request['template']:'index';
+    $page->save();
+
+    return redirect('/admin/pages');
+  }
+
+
+  /**
+   * Updates an existing resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+  public function update(Request $request)
+  {
+    $this->userCheck('update');
+    
+    $page = Page::find($request['id']);
+    if(!$page) return redirect('/');
+
+    $this->validator($request->all(), $this->getRulesTo('update', $request['id']))->validate();
+
     $page->name = strtolower($request['name']);
     $page->public = isset($request['public']) ? true:false;
     $page->template = isset($request['template']) ? $request['template']:'index';

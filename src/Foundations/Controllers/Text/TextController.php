@@ -25,7 +25,7 @@ trait TextController
    */
   public function create($myurl, $myloc)
   {
-    $this->isForAdmin();
+    $this->userCheck('create');
     
     $url = ($myurl ? $myurl : '');
     $location = ($myloc ? $myloc : '');
@@ -42,8 +42,8 @@ trait TextController
   public function store(Request $request)
   {
 
-    $this->isForAdmin();
-    $this->validator($request->all())->validate();
+    $this->userCheck('store');
+    $this->validator($request->all(), $this->getRulesTo('store'))->validate();
 
     $res = Text::select('rank')->where([['url', $request['url']],['location', $request['location']]])->first();
     $rank = ($res ? $res["rank"]+1 : 1);
@@ -67,7 +67,7 @@ trait TextController
    */
   public function edit($id)
   {
-    $this->isForAdmin();
+    $this->userCheck('edit');
 
     $text = Text::find($id);
     if(!$text) return redirect('/');
@@ -84,12 +84,12 @@ trait TextController
    */
   public function update(Request $request)
   {
-
-    $this->isForAdmin();
-    $this->validator($request->all())->validate();
+    $this->userCheck('update');
 
     $text = Text::find($request['id']);
     if(!$text) return redirect('/');
+
+    $this->validator($request->all(), $this->getRulesTo('update', $request['id']))->validate();
 
     $text->content = htmlentities($request['content']);
     $text->save();
@@ -105,7 +105,7 @@ trait TextController
    */
   public function destroy($id)
   {
-    $this->isForAdmin();
+    $this->userCheck('delete');
     $text = Text::find($id);
     if(!$text) return redirect('/');
 
@@ -128,11 +128,22 @@ trait TextController
 
   /**
    * Check for admin role
-   * @param int $id
+   * @param string $a
    */
-  private function isForAdmin(){
-    if(!Auth::user()->isAdmin())
-      return redirect('/');
+  private function userCheck($a){
+    switch ($a) {
+      case 'create':
+      case 'store':
+      case 'edit':
+      case 'update':
+      case 'delete':
+        if(!Auth::user()->isAdmin())
+          return redirect('/');
+        break;
+      default:
+        return false;
+        break;
+    }
   }
 
 
