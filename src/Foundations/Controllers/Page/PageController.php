@@ -87,7 +87,6 @@ trait PageController
     }
 
     $modules = ModuleController::getContents($mypage->name);
-
     $mypage->name = substr($mypage->name, 0, 1) === '/' ? substr($mypage->name, 1):$mypage->name;
 
     return view('pages.'.$mypage->template, compact('mypage','modules'));
@@ -154,9 +153,10 @@ trait PageController
    */
   public function home(  ){
     
-    $mypage = new Page();
-    $mypage->name = config('app.name');
-    return view('pages.home', compact('mypage'));
+    $appname = config('app.name');
+    $mypage = Page::find(1);
+    $modules = ModuleController::getContents('home');
+    return view('pages.home', compact('appname', 'mypage', 'modules'));
   }
 
   /**

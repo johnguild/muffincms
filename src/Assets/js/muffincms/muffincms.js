@@ -1,8 +1,9 @@
 $(document).ready(function(){
-	$(".opt-div a.delete").click(function(e){
+
+	$(".opt-div a.delete, .w-conf a.delete, .w-conf-hvr a.delete").click(function(e){
 		var path = $(this).attr('href');
 		var mod = $(this).attr('data-mod');
-		e.preventDefault();
+		// e.preventDefault();
 			swal({
 			  title: "Are you sure?",
 			  text: "You are about to delete this "+mod,
@@ -19,7 +20,7 @@ $(document).ready(function(){
 			  	window.location.href = path;
 			  } 
 			});
-
+		return false;
 	});
 
 

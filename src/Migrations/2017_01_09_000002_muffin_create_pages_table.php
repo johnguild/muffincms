@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\Models\Page\Page;
 
 class MuffinCreatePagesTable extends Migration
 {
@@ -20,6 +21,18 @@ class MuffinCreatePagesTable extends Migration
             $table->string('template')->default('index');
             $table->timestamps();
         });
+
+        $page = new Page();
+        $page->name = 'home';
+        $page->public = true;
+        $page->template = 'home';
+        $page->save();
+
+        $page = new Page();
+        $page->name = 'about-us';
+        $page->public = true;
+        $page->template = 'generic';
+        $page->save();
     }
 
     /**

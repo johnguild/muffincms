@@ -48,6 +48,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
+        if(!config('muffincms.registration')) return redirect('/');
         return view('users.register');
     }
     
@@ -100,6 +101,7 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
 
+        if(!config('muffincms.registration')) return redirect('/');
         // return $request->all();
         $this->validator($request->all())->validate();
         $request['password'] = bcrypt($request->password);

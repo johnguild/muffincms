@@ -1,11 +1,30 @@
+.w-conf>.dropdown>.submenu>li>a,
+.w-conf-hvr>.dropdown>.submenu>li>a,
+.w-opt>.opt-div>a,
+.w-opt-hvr>.opt-div>a,
+.w-add > a{
+	text-decoration: none !important;
+	font-size: 14px !important;
+}
+
+.opt-div a, 
+.opt-div form button,
+.w-add a{
+	border-radius: 0px !important;
+	border: 2px !important;
+	color: #fff !important;
+}
+
 /*--- Configure Button ---*/
 .conf-btn{
-	font-size: 18px;
 }
 
 .conf-hvr-btn{
-	font-size: 18px;
 	display: none;
+}
+
+.conf-btn, .conf-hvr-btn{
+	font-size: 18px !important;
 }
 
 .w-conf-hvr:hover .conf-hvr-btn{
@@ -14,23 +33,33 @@
 
 .w-conf > .dropdown > .submenu, .w-conf-hvr > .dropdown > .submenu{
 	display:block;
-	list-style-type: none;
-	position:absolute;
-	padding: 2px;
-	top: 16px;
-	right: 9px;
-	background-color: #fff;
-	width: 100px;
-	text-align: center;
-  z-index: 9999;
-  display: none;
-  border: solid 1px #ddd;
+	list-style-type: none !important;
+	position:absolute !important;
+	padding: 2px !important;
+	top: 16px !important;
+	right: 9px !important;
+	background-color: #fff !important;
+	width: 100px !important;
+	text-align: center !important;
+  	z-index: 9999 !important;
+  	display: none;
+  	border: solid 1px #ddd !important;
+}
+
+.w-conf > .dropdown > .submenu a, .w-conf-hvr > .dropdown > .submenu a{
+	color: #222 !important;
+	width: 100% !important;
+	margin-left: auto 0;
+}
+
+.w-conf > .dropdown > .submenu li, .w-conf-hvr > .dropdown > .submenu li{
+	padding: 0px !important;
 }
 
 .w-conf .dropdown .submenu ul li{
-	list-style-type: none;
-	text-decoration: none;
-	width: 100%;
+	list-style-type: none !important;
+	text-decoration: none !important;
+	width: 100% !important;
 }
 
 .w-conf > .dropdown:hover .submenu, .w-conf-hvr > .dropdown:hover .submenu{
@@ -38,7 +67,7 @@
 }
 
 .w-conf .submenu li:hover, .w-conf-hvr .submenu li:hover{
-	background-color: #ddd;
+	background-color: #ddd !important;
 }
 
 .w-conf .submenu li a:hover, .w-conf-hvr .submenu li a:hover{
@@ -48,13 +77,10 @@
 
 /*--- Option Styling ---*/
 .opt-div{
-	padding: 2px;
+	padding: 2px !important;
 }
 
-.opt-div a, .opt-div form button{
-	border-radius: 0px;
-	border: 2px;
-}
+
 
 .opt-div .clear{
 	clear: both;
@@ -62,8 +88,8 @@
 
 .w-opt-hvr .opt-div{
 	display: none;
-	z-index: 999999;
-	margin-left: auto;
+	z-index: 999999 !important;
+	margin-left: auto !important;
 	transition: all 3s linear;
 }
 
@@ -71,17 +97,11 @@
 	display:block;
 }
 
-.w-opt, .w-opt-hvr:hover{
-
-}
 /*--- End ---*/
 
 
 /*--- Add ---*/
-.w-add a{
-	border-radius: 0px;
-	border: 2px;
-}
+
 /*--- End ---*/
 
 
@@ -91,4 +111,17 @@
 	border-radius: 0px;
 }
 
+/*--- End ---*/
+
+
+/*--- Custom Fixes ---*/
+.sweet-alert fieldset input {
+	display: none;
+	margin: 0;
+    padding: 0;
+}
+
+.sweet-alert button{
+	line-height: 1.2em;
+}
 /*--- End ---*/

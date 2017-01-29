@@ -23,11 +23,11 @@ class MuffinUpdateUsersTable extends Migration
         });
 
         $user = new User;
-        $user->firstname = '';
-        $user->lastname = '';
-        $user->email = '';
-        $user->password = bcrypt('');
-        $user->contact = '';
+        $user->firstname = 'John Robin';
+        $user->lastname = 'Perez';
+        $user->email = 'admin@muffincms.com';
+        $user->password = bcrypt('basic101');
+        $user->contact = '09359372676';
         $user->newsletter = false;
         $user->save();
     }
