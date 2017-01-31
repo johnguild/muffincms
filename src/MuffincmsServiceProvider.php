@@ -68,13 +68,14 @@ class MuffincmsServiceProvider extends ServiceProvider
             // __DIR__.'/config' => base_path('config'),
             // __DIR__.'/views/layouts/' => base_path('resources/views/layouts/'),
             // __DIR__.'/assets/css/muffincms' => base_path('public/css/muffincms/'),
-            __DIR__.'/assets/js/muffincms' => base_path('public/js/muffincms/'),
+            // __DIR__.'/assets/js/muffincms' => base_path('public/js/muffincms/'),
             // __DIR__.'/controllers/link' => base_path('app/http/controllers/link'),
             // __DIR__.'/controllers/page' => base_path('app/http/controllers/page'),
             // __DIR__.'/views/admins' => base_path('resources/views/admins'),
-            // __DIR__.'/views/pages' => base_path('resources/views/pages'),
+            __DIR__.'/views/pages' => base_path('resources/views/pages'),
             // __DIR__.'/views/links' => base_path('resources/views/links'),
             // __DIR__.'/views/texts' => base_path('resources/views/texts'),
+            __DIR__.'/views/divs' => base_path('resources/views/divs'),
             // __DIR__.'/views' => base_path('resources/views'),
             // __DIR__.'/migrations' => base_path('database/migrations/'),
 
@@ -92,6 +93,7 @@ class MuffincmsServiceProvider extends ServiceProvider
     {
         // include __DIR__.'/Routes/web.php';
         // $this->app->make('Johnguild\Muffincms\TestController');
+        require_once __DIR__ . '/Foundations/Helpers/Slugger.php';
 
     }
 

@@ -16,12 +16,14 @@ trait ModuleController
 	 */
 	protected static $available = [
 			'\Text'=>'\App\Models\Text',
-			'\Link'=>'\App\Models\Link'
+			'\Link'=>'\App\Models\Link',
+			'\Div'=>'\App\Models\Div',
 		];
 
 	protected static $hierarchy = [
 			'\Text'=>['rank','desc'],
-			'\Link'=>['created_at','asc']
+			'\Link'=>['rank','asc'],
+			'\Div'=>['rank','desc']
 		]; 
 
 	/**

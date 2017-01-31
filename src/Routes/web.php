@@ -23,6 +23,14 @@ Route::get('/dashboard', 'Admin\AdminController@dashboard');
 Route::get('/admin/posts', 'Admin\AdminController@posts');
 Route::get('/admin/pages', 'Admin\AdminController@pages');
 
+// divs
+Route::get('/div/edit/{id}', 'Div\DivController@edit')->middleware('auth');
+Route::get('/div/create/url/{myurl}/location/{myloc}', 'Div\DivController@create')->middleware('auth');
+Route::get('/div/delete/{id}', 'Div\DivController@destroy')->middleware('auth');
+Route::post('/div/store', 'Div\DivController@store')->middleware('auth');
+Route::post('/div/update', 'Div\DivController@update')->middleware('auth');
+Route::get('/div/{wildcard}', 'Div\DivController@notfound')->where(['wildcard' => '.*']);
+
 // pages
 Route::get('/page/edit/{id}', 'Page\PageController@edit')->middleware('auth');
 Route::get('/page/create/', 'Page\PageController@create')->middleware('auth');
