@@ -72,6 +72,7 @@ class LinkController extends Controller
     $link = new Link();
     $link->url = $request['url'];
     $link->location = $request['location'];
+    $link->global = ($request['global'] ? 1:0);
     $link->rank = $rank;
     $link->title = $request['title'];
     $link->address = $request['address'];
@@ -100,6 +101,7 @@ class LinkController extends Controller
 
     $link->url = $request['url'];
     $link->location = $request['location'];
+    $link->global = ($request['global'] ? 1:0);
     $link->title = $request['title'];
     $link->address = $request['address'];
     $link->alt = $request['alt'];

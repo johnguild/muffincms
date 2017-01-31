@@ -39,6 +39,7 @@ trait ModuleController
 			if($url)
 				$modules[stripslashes($key)] = 
 					$model::where('url', $url)
+						->orWhere('global', true)
 						->orderBy(self::$hierarchy[$key][0], self::$hierarchy[$key][1])
 						->get();
 			else
@@ -47,6 +48,14 @@ trait ModuleController
 						->get();
 		}
 
+		return $modules;
+	}
+
+	public static function getDeletableModules(){
+		$modules = [];
+		foreach (self::$available as $key => $mod) {
+			$modules[] =  $mod . $key;
+		}	
 		return $modules;
 	}
 }

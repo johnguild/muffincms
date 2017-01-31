@@ -22,6 +22,7 @@ Route::get('/admin', 'Admin\AdminController@dashboard');
 Route::get('/dashboard', 'Admin\AdminController@dashboard');
 Route::get('/admin/posts', 'Admin\AdminController@posts');
 Route::get('/admin/pages', 'Admin\AdminController@pages');
+Route::get('/admin/settings', 'Admin\AdminController@settings');
 
 // divs
 Route::get('/div/edit/{id}', 'Div\DivController@edit')->middleware('auth');

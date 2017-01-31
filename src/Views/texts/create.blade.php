@@ -16,6 +16,12 @@
 			<input type="text" id="text-url-location" name="location" value="{{$location}}" readonly="readonly" class="form-control">
 		</div>
 
+		<div class="checkbox">
+	    	<label>
+				<input type="checkbox" name="global" @if(old('global'))checked="checked" @endif> Show on all ({{$location}}) regardless of the url.
+		    </label>
+		</div>
+
 		<div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
 			<label for="text-content">Content</label>
 			<textarea cols="15" rows="5" id="text-content" class="ckeditor" name="content">{{old('content')}}</textarea>

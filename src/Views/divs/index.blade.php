@@ -8,6 +8,7 @@
 	@if(isset($limit) && $datactr >= $limit) @break @endif
 	@if($div->location != $loc) @continue @endif
 	@php $datactr++; @endphp
+		@include('divs.'.$view, $div)
 		@if(Auth::check() && Auth::user()->isAdmin())
 			<div class="@if($conf==2)w-conf-hvr @elseif($conf==1)w-conf @endif @if($opt==2)w-opt-hvr @elseif($opt==1)w-opt @endif">
 				@if($conf)
@@ -15,7 +16,6 @@
 				@endif
 			</div>
 		@endif
-		@include('divs.'.$view, $div)
 		@if(Auth::check() && Auth::user()->isAdmin())
 				@if($opt)
 					@include('modules.opt', ['mod'=>'div', 'id'=>$div->id, 'opt'=>$opt])

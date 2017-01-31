@@ -16,8 +16,9 @@ class MuffinCreateLinksTable extends Migration
         Schema::create('links', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url');
-            $table->integer('rank');
             $table->string('location');
+            $table->boolean('global')->default(false);
+            $table->integer('rank');
             $table->string('title')->default('');
             $table->string('address')->default('');
             $table->string('alt')->default('');

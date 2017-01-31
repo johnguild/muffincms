@@ -51,6 +51,7 @@ trait TextController
     $text = new Text();
     $text->url = $request['url'];
     $text->location = $request['location'];
+    $text->global = ($request['global'] ? 1:0);
     $text->content = htmlentities($request['content']);
     $text->rank = $rank;
     $text->save();
@@ -91,6 +92,7 @@ trait TextController
 
     $this->validator($request->all(), $this->getRulesTo('update', $request['id']))->validate();
 
+    $text->global = ($request['global'] ? 1:0);
     $text->content = htmlentities($request['content']);
     $text->save();
 

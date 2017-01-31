@@ -32,7 +32,7 @@
     <!-- Header -->
         <header id="header">
             <h1>
-                @include('texts.index', ['data' => $modules['Text'], 'loc'=>'nav-title', 'view'=>'show', 'opt'=>1, 'conf'=>1])
+                @include('texts.index', ['data' => $modules['Text'], 'loc'=>'nav-title', 'view'=>'show', 'opt'=>0, 'conf'=>1])
             </h1>
             <a href="#nav">Menu</a>
         </header>
@@ -40,7 +40,7 @@
     <!-- Nav -->
         <nav id="nav">
             <ul class="links">
-                @include('links.list_default', ['data' => $modules['Link'], 'loc'=>'nav-links', 'view'=>'show', 'opt'=>1, 'conf'=>1])
+                @include('links.list_default', ['data' => $modules['Link'], 'loc'=>'nav-links', 'view'=>'show', 'opt'=>0, 'conf'=>1])
                 @if (Auth::guest())
                     <li><a href="/login">Login</a></li>
                     <li><a href="/register">Register</a></li>

@@ -44,6 +44,14 @@ class AdminController extends Controller
     return view('admins.pages', compact('pages'));
   }
 
+  public function settings()
+  {
+    $this->userCheck('settings');
+
+    // return $pages;
+    return view('admins.settings');
+  }
+
 
   /**
    * Check for admin role

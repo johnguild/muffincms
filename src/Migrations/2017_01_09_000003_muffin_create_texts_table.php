@@ -16,8 +16,9 @@ class MuffinCreateTextsTable extends Migration
         Schema::create('texts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url');
-            $table->integer('rank');
             $table->string('location');
+            $table->boolean('global')->default(false);
+            $table->integer('rank');
             $table->string('content', 2000)->default('');
             $table->timestamps();
         });

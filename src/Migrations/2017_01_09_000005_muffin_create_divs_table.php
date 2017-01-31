@@ -17,6 +17,7 @@ class MuffinCreateDivsTable extends Migration
             $table->increments('id');
             $table->string('url');
             $table->string('location');
+            $table->boolean('global')->default(false);
             $table->integer('rank');
             $table->string('title')->default('');
             $table->string('image', 1000)->default('');

@@ -70,6 +70,7 @@ class DivController extends Controller
     $div = new Div();
     $div->url = $request['url'];
     $div->location = $request['location'];
+    $div->global = ($request['global'] ? 1:0);
     $div->rank = $rank;
     $div->title = $request['title'];
     $div->image = $request['image'];
@@ -95,6 +96,7 @@ class DivController extends Controller
 
     $div->url = $request['url'];
     $div->location = $request['location'];
+    $div->global = ($request['global'] ? 1:0);
     $div->title = $request['title'];
     $div->image = $request['image'];
     $div->save();

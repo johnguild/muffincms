@@ -3,6 +3,7 @@
 namespace Johnguild\Muffincms\Foundations\Controllers\Div;
 
 // dependencies
+use Johnguild\Muffincms\Foundations\Controllers\Module\ModuleController as MuffinModuleController;
 use Illuminate\Http\Request;
 // models
 use App\Models\Div\Div;
@@ -59,6 +60,7 @@ trait DivController
     $div = new Div();
     $div->url = $request['url'];
     $div->location = $request['location'];
+    $div->global = ($request['global'] ? 1:0);
     $div->rank = $rank;
     $div->title = $request['title'];
     $div->image = $request['image'];
@@ -110,6 +112,7 @@ trait DivController
 
     $div->url = $request['url'];
     $div->location = $request['location'];
+    $div->global = ($request['global'] ? 1:0);
     $div->title = $request['title'];
     $div->image = $request['image'];
     $div->save();
@@ -128,12 +131,37 @@ trait DivController
     $this->userCheck('delete');
     $div = Div::find($id);
     if(!$div) return redirect('/');
-   
+
+    $this->deleteContents($div);
     $back = $div->url;
     $div->delete();
 
     return redirect('/'.$back);
   }
+
+  /**
+   * Remove child modules inside the div
+   *
+   * @param  int  $id
+   */
+  protected function deleteContents($div)
+  {
+    $this->userCheck('delete');
+
+    $modules = MuffinModuleController::getDeletableModules();
+    foreach ($modules as $mod) {
+      $loc = 'div'.$div->id.'-'.makeSlug($div->title);
+      if($mod != 'Div'){
+        $mod::where('location',$loc)->delete();
+      }else{
+        $subdiv = Div::where('location',$loc);
+        $this->deleteContents($subdiv);
+      }
+    }
+  }
+
+
+
 
   /**
    * Display the specified resource.

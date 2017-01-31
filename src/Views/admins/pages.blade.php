@@ -56,6 +56,10 @@
                                     </td>
                                     <td>
                                         <div class="opt-div">
+                                            <a href="/{{$page->name}}" class="btn btn-success" target="_blank">
+                                                <i class="fa fa-eye" aria-hidden=true></i>
+                                                visit
+                                            </a>
                                             <a href="/page/edit/{{$page->id}}" class="btn btn-info">
                                                 <i class="fa fa-pencil-square-o" aria-hidden=true></i>
                                                 edit
@@ -83,9 +87,6 @@
 @endsection
 
 @section('script')
-  <script type="text/javascript">
-    $(document).ready(function(){
-    });
-  </script>
+
 @endsection
 		

@@ -1,4 +1,4 @@
-<div class="content" @if($div->image) style="url('{{$div->image}}')" @endif>
+<div class="content" @if($div->image) style="background:url('{{$div->image}}');" @endif>
     @include('texts.index', ['data' => $modules['Text'], 
     						'loc'=>'div'.$div->id.'-'.makeSlug($div->title), 
     						'view'=>'show', 

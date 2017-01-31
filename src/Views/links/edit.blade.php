@@ -16,7 +16,13 @@
 				<label for="link-url">Url</label>
 				<input type="link" id="link-url" name="url" value="{{old('url', $link->url)}}" readonly="readonly" class="form-control">	
 				<label for="link-location">Location</label>
-				<input type="link" id="link-location" name="location" value="{{old('locations', $link->location)}}" readonly="readonly" class="form-control">
+				<input type="link" id="link-location" name="location" value="{{old('location', $link->location)}}" readonly="readonly" class="form-control">
+		</div>
+
+		<div class="checkbox">
+	    	<label>
+				<input type="checkbox" name="global" @if(old('global') || $link->global)checked="checked" @endif> Show on all ({$link->location}) regardless of the url.
+		    </label>
 		</div>
 
 		<div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
