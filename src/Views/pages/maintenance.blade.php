@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title', ucfirst($mypage->name))
+@section('title', ucfirst($appname))
 
 @section('content')
 

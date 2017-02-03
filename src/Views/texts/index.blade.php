@@ -1,5 +1,5 @@
 @if(Auth::check() && Auth::user()->isAdmin() )
-	@if(isset($limit) && count(array_filter($data->toArray(),function($data) use($loc){return $data['location'] == $loc;})) < $limit)
+	@if(!isset($limit) || (isset($limit) && count(array_filter($data->toArray(),function($data) use($loc){return $data['location'] == $loc;})) < $limit))
 		@include('modules.add', ['mod'=>'text', 'add'=>'/url/'.$mypage->name.'/location/'.$loc, 'mess'=>"Add new text on ".$loc])
 	@endif
 @endif

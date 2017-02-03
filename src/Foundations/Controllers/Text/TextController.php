@@ -3,8 +3,10 @@
 namespace Johnguild\Muffincms\Foundations\Controllers\Text;
 
 // dependencies
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 // models
+use Johnguild\Muffincms\Foundations\Models\Admin\Admin;
 use App\Models\Text\Text;
 use Auth;
 
@@ -139,8 +141,12 @@ trait TextController
       case 'edit':
       case 'update':
       case 'delete':
-        if(!Auth::user()->isAdmin())
+        if(Auth::check() && !Auth::user()->isAdmin())
           return redirect('/');
+        break;
+      case 'maintenance':
+        if(Admin::isMaintenance())
+          return Redirect::to('/maintenance')->send();
         break;
       default:
         return false;

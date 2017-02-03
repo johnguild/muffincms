@@ -64,10 +64,12 @@
                                                 <i class="fa fa-pencil-square-o" aria-hidden=true></i>
                                                 edit
                                             </a>
+                                            @if($page->id > 2)
                                             <a href="/page/delete/{{$page->id}}" class="btn btn-danger delete" data-mod="page">
                                                 <i class="fa fa-times" aria-hidden=true></i>
                                                 delete
                                             </a>
+                                            @endif
                                             <div class="clear"></div>
                                         </div>
                                     </td>

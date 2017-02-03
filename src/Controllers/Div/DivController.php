@@ -16,6 +16,11 @@ class DivController extends Controller
 {
    use MuffinDivController;
 
+  public function __construct()
+  {
+    $this->userCheck('maintenance');
+  }
+
   /**
    * Get a validator for an incoming registration request.
    *

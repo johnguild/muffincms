@@ -16,6 +16,11 @@ class LinkController extends Controller
 {
    use MuffinLinkController;
 
+  public function __construct()
+  {
+    $this->userCheck('maintenance');
+  }
+
   /**
    * Get a validator for an incoming registration request.
    *

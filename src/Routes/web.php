@@ -16,13 +16,14 @@ Auth::routes();
 
 Route::get('/', 'Page\PageController@home');
 Route::get('/home', 'Page\PageController@home');
+Route::get('/maintenance', 'Page\PageController@maintenance');
 
 // admin
-Route::get('/admin', 'Admin\AdminController@dashboard');
-Route::get('/dashboard', 'Admin\AdminController@dashboard');
-Route::get('/admin/posts', 'Admin\AdminController@posts');
-Route::get('/admin/pages', 'Admin\AdminController@pages');
-Route::get('/admin/settings', 'Admin\AdminController@settings');
+Route::get('/admin', 'Admin\AdminController@dashboard')->middleware('auth');
+Route::get('/dashboard', 'Admin\AdminController@dashboard')->middleware('auth');
+Route::get('/admin/posts', 'Admin\AdminController@posts')->middleware('auth');
+Route::get('/admin/pages', 'Admin\AdminController@pages')->middleware('auth');
+Route::get('/admin/settings', 'Admin\AdminController@settings')->middleware('auth');
 
 // divs
 Route::get('/div/edit/{id}', 'Div\DivController@edit')->middleware('auth');

@@ -29,6 +29,12 @@ class MuffinCreatePagesTable extends Migration
         $page->save();
 
         $page = new Page();
+        $page->name = 'maintenance';
+        $page->public = true;
+        $page->template = 'maintenance';
+        $page->save();
+
+        $page = new Page();
         $page->name = 'about-us';
         $page->public = true;
         $page->template = 'generic';

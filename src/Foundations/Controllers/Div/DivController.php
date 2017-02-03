@@ -4,8 +4,10 @@ namespace Johnguild\Muffincms\Foundations\Controllers\Div;
 
 // dependencies
 use Johnguild\Muffincms\Foundations\Controllers\Module\ModuleController as MuffinModuleController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 // models
+use Johnguild\Muffincms\Foundations\Models\Admin\Admin;
 use App\Models\Div\Div;
 use Auth;
 
@@ -185,8 +187,12 @@ trait DivController
       case 'edit':
       case 'update':
       case 'delete':
-        if(!Auth::user()->isAdmin())
+        if(Auth::check() && !Auth::user()->isAdmin())
           return redirect('/');
+        break;
+      case 'maintenance':
+        if(Admin::isMaintenance())
+          return Redirect::to('/maintenance')->send();
         break;
       default:
         return false;

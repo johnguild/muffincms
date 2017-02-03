@@ -63,7 +63,7 @@ class PageController extends Controller
     $this->validator($request->all(), $this->getRulesTo('store'))->validate();
 
     $page = new Page();
-    $page->name = strtolower($request['name']);
+    $page->name = makeSlug($request['name']);
     $page->public = isset($request['public']) ? true:false;
     $page->template = isset($request['template']) ? $request['template']:'index';
     $page->save();
@@ -87,7 +87,7 @@ class PageController extends Controller
 
     $this->validator($request->all(), $this->getRulesTo('update', $request['id']))->validate();
 
-    $page->name = strtolower($request['name']);
+    $page->name = makeSlug($request['name']);
     $page->public = isset($request['public']) ? true:false;
     $page->template = isset($request['template']) ? $request['template']:'index';
     $page->save();

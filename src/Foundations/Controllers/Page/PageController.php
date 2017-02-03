@@ -4,8 +4,10 @@ namespace Johnguild\Muffincms\Foundations\Controllers\Page;
 
 // dependencies
 use App\Http\Controllers\Module\ModuleController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 // models
+use Johnguild\Muffincms\Foundations\Models\Admin\Admin;
 use App\Models\Page\Page;
 use Auth;
 
@@ -50,11 +52,11 @@ trait PageController
   }
 
    /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\Response
-   */
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
   public function store(Request $request)
   {
 
@@ -62,7 +64,7 @@ trait PageController
     $this->validator($request->all(), $this->getRulesTo('store'))->validate();
 
     $page = new Page();
-    $page->name = strtolower($request['name']);
+    $page->name = makeSlug($request['name']);
     $page->public = isset($request['public']) ? true:false;
     $page->template = isset($request['template']) ? $request['template']:'index';
     $page->save();
@@ -79,8 +81,8 @@ trait PageController
   public function show($page)
   {
 
+    $this->userCheck('maintenance');
     $mypage = Page::where('name', $page)->first();
-
     if(!$mypage){
       // DEV -> we want the admin to view a blank page with an option to add this page
       return view($this->pagenotfound);
@@ -123,7 +125,7 @@ trait PageController
 
     $this->validator($request->all(), $this->getRulesTo('update', $request['id']))->validate();
 
-    $page->name = strtolower($request['name']);
+    $page->name = makeSlug($request['name']);
     $page->public = isset($request['public']) ? true:false;
     $page->template = isset($request['template']) ? $request['template']:'index';
     $page->save();
@@ -140,6 +142,7 @@ trait PageController
   public function destroy($id)
   {
     $this->userCheck('delete');
+    if($id<=2) return redirect()->back();
     $page = Page::find($id);
     if(!$page) return redirect('/admin/pages');
 
@@ -153,10 +156,25 @@ trait PageController
    */
   public function home(  ){
     
+    $this->userCheck('maintenance');
     $appname = config('app.name');
     $mypage = Page::find(1);
-    $modules = ModuleController::getContents('home');
-    return view('pages.home', compact('appname', 'mypage', 'modules'));
+    $modules = ModuleController::getContents($mypage->name);
+    return view('pages.'.$mypage->template, compact('appname', 'mypage', 'modules'));
+  }
+
+  /**
+   * Redirects to homepage
+   */
+  public function maintenance(  ){
+    
+    if(Auth::check() && Auth::user()->isAdmin()){}
+    elseif(!Admin::isMaintenance()){ return redirect('/');}
+
+    $appname = config('app.name');
+    $mypage = Page::find(2);
+    $modules = ModuleController::getContents($mypage->name);
+    return view('pages.'.$mypage->template, compact('appname', 'mypage', 'modules'));
   }
 
   /**
@@ -186,8 +204,13 @@ trait PageController
       case 'edit':
       case 'update':
       case 'delete':
-        if(!Auth::user()->isAdmin())
+        if(Auth::check() && !Auth::user()->isAdmin())
           return redirect('/');
+        break;
+      case 'maintenance':
+        if(Admin::isMaintenance())
+          if(Auth::check() && Auth::user()->isAdmin()) return false;
+          return Redirect::to('/maintenance')->send();
         break;
       default:
         return false;

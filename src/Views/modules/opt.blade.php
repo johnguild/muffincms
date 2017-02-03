@@ -1,4 +1,4 @@
-<div class="opt-div">
+<div class="opt-div text-center">
 	<a href="/{{$mod}}/edit/{{$id}}" class="btn btn-info">
 		<i class="fa fa-pencil-square-o" aria-hidden=true></i>
 		edit

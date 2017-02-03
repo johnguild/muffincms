@@ -14,8 +14,14 @@ use App\Models\Text\Text;
 
 class TextController extends Controller
 {
-  
+
   use MuffinTextController;
+
+
+  public function __construct()
+  {
+    $this->userCheck('maintenance');
+  }
 
   /**
    * Get a validator for an incoming registration request.
