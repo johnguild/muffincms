@@ -1,12 +1,12 @@
 <?php
 
-namespace Johnguild\Muffincms\Foundations\Models\Page;
+namespace Johnguild\Muffincms\Foundations\Models\Post;
 
 // dependencies
 use Illuminate\Database\Eloquent\Model;
 // models
 
-class Page extends Model
+class Viewer extends Model
 {
   //
 }

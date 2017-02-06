@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Johnguild\Muffincms\Foundations\Models\Admin\Admin;
+use Carbon\Carbon;
 
 class MuffinCreateAdminsTable extends Migration
 {
@@ -16,20 +17,22 @@ class MuffinCreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->default('');
-            $table->string('value', 10000)->default('');
+            $table->string('key')->default('');
+            $table->string('val', 10000)->default('');
             $table->timestamps();
         });
 
-
+        $dt = Carbon::now();
+        $dt = $dt->toW3cString();
+        
         $page = new Admin();
-        $page->name = 'maintenance';
-        $page->value = serialize(array('on'=>false, 'openning'=>'some date here'));
+        $page->key = 'maintenance';
+        $page->val = serialize(['on'=>false, 'opening'=>$dt]);
         $page->save();
 
         $page = new Admin();
-        $page->name = 'users';
-        $page->value = serialize(array('registration'=>false));
+        $page->key = 'users';
+        $page->val = serialize(array('registration'=>false));
         $page->save();
 
 

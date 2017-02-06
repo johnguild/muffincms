@@ -24,6 +24,7 @@ Route::get('/dashboard', 'Admin\AdminController@dashboard')->middleware('auth');
 Route::get('/admin/posts', 'Admin\AdminController@posts')->middleware('auth');
 Route::get('/admin/pages', 'Admin\AdminController@pages')->middleware('auth');
 Route::get('/admin/settings', 'Admin\AdminController@settings')->middleware('auth');
+Route::post('/admin/update', 'Admin\AdminController@update')->middleware('auth');
 
 // divs
 Route::get('/div/edit/{id}', 'Div\DivController@edit')->middleware('auth');
@@ -40,6 +41,14 @@ Route::post('/page/store', 'Page\PageController@store')->middleware('auth');
 Route::post('/page/update', 'Page\PageController@update')->middleware('auth');
 Route::get('/page/delete/{id}', 'Page\PageController@destroy')->middleware('auth');
 Route::get('/page/{wildcard}', 'Page\PageController@notfound')->where(['wildcard' => '.*']);
+
+// posts
+Route::get('/post/edit/{id}', 'Post\PostController@edit')->middleware('auth');
+Route::get('/post/create/', 'Post\PostController@create')->middleware('auth');
+Route::post('/post/store', 'Post\PostController@store')->middleware('auth');
+Route::post('/post/update', 'Post\PostController@update')->middleware('auth');
+Route::get('/post/delete/{id}', 'Post\PostController@destroy')->middleware('auth');
+Route::get('/post/{wildcard}', 'Post\PostController@notfound')->where(['wildcard' => '.*']);
 
 // text
 Route::get('/text/edit/{id}', 'Text\TextController@edit')->middleware('auth');
@@ -59,3 +68,8 @@ Route::get('/link/{wildcard}', 'Link\LinkController@notfound')->where(['wildcard
 
 // should the last route
 Route::get('/{page}', 'Page\PageController@show');
+
+// check posts first
+Route::get('/{slug}', 'Post\PostController@show');
+
+

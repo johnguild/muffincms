@@ -3,7 +3,6 @@
 namespace Johnguild\Muffincms\Foundations\Models\Admin;
 
 // dependencies
-use Johnguild\Muffincms\Foundations\Models\Admin\Admin as MuffinAdmin;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 // models
@@ -15,26 +14,27 @@ class Admin extends Model
 
     protected $guarded = [ 'id' ];
 
-    public static $maintenance;
 
 	/*---------- GET<>ATTRIBUTE ----------*/
 
-    public function getValueAttribute( $value ){
+    public function getValAttribute( $value ){
+        $value = unserialize($value);
+        if($this->isSerialized($value))	$value=unserialize($value);
         
-        return $this->attributes['value'] = unserialize($value);
+        return $value;
     }
 
-    public function setValueAttribute( $value ){
+    public function setValAttribute( $value ){
 
-    	return $this->attributes['value'] = serialize($value);
+    	return $this->attributes['val'] = serialize($value);
     }
     
 
 	/*---------- SCOPES ----------*/
 
-    public function scopeName( $query, $arg ){
+    public function scopeKey( $query, $arg ){
 
-	    $query->where('name', $arg);
+	    $query->where('key', $arg);
     }
     
 	/*---------- RELATIONS ----------*/
@@ -55,27 +55,21 @@ class Admin extends Model
 	 * Check to see if it is on maintenance mode
 	 */
 	public static function isMaintenance(){
-
-		if(!isset(self::$maintenance)){
-			$res = self::name('maintenance')->first();
-			self::$maintenance = $res->value['on'];
-		}
-
-		return self::$maintenance;
+		$res = self::key('maintenance')->first();
+		return $res->val['on'];
 	}
 
-	public static function toggleMaintenance($on=null){
-		$tmp;
-		if($on === null) $tmp = self::$maintenance ? false:true;
-		else $tmp = $on;
+	public static function toggleMaintenance($on=false){
 
-		$res = self::name('maintenance')->first();
-		$hldr = $res->value;
-		unset($res->value);
-		$hldr['on'] = $tmp;
-		$res->value = $hldr;
+		$res = self::key('maintenance')->first();
+		$hldr = $res->val;
+		unset($res->val);
+		$hldr['on'] = $on;
+		$res->val = $hldr;
 		$res->save();
+	}
 
-		self::$maintenance = $tmp;
+	function isSerialized($str) {
+	    return ($str == serialize(false) || @unserialize($str) !== false);
 	}
 }

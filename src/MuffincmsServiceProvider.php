@@ -17,10 +17,10 @@ class MuffincmsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/routes' => base_path('routes'),
             __DIR__.'/config' => base_path('config'),
-            __DIR__.'/controllers' => base_path('app/http/controllers'),
-            __DIR__.'/models' => base_path('app/Models'),
-            __DIR__.'/app' => base_path('app'),
-            __DIR__.'/views' => base_path('resources/views'),
+            __DIR__.'/mvc/controllers' => base_path('app/http/controllers'),
+            __DIR__.'/mvc/models' => base_path('app/Models'),
+            __DIR__.'/mvc/app' => base_path('app'),
+            __DIR__.'/mvc/views' => base_path('resources/views'),
             __DIR__.'/migrations' => base_path('database/migrations'),
             __DIR__.'/assets' => base_path('public'),
         ], 'muffin_cms');
@@ -35,16 +35,16 @@ class MuffincmsServiceProvider extends ServiceProvider
         ], 'muffin_config');
 
         $this->publishes([
-           __DIR__.'/controllers' => base_path('app/http/controllers'),
+           __DIR__.'/mvc/controllers' => base_path('app/http/controllers'),
         ], 'muffin_controllers');
 
         $this->publishes([
-            __DIR__.'/models' => base_path('app/Models'),
-            __DIR__.'/app' => base_path('app'),
+            __DIR__.'/mvc/models' => base_path('app/Models'),
+            __DIR__.'/mvc/app' => base_path('app'),
         ], 'muffin_models');
 
         $this->publishes([
-           __DIR__.'/views' => base_path('resources/views'),
+           __DIR__.'/mvc/views' => base_path('resources/views'),
         ], 'muffin_views');
 
         $this->publishes([
@@ -57,8 +57,8 @@ class MuffincmsServiceProvider extends ServiceProvider
 
 
         $this->publishes([
-            __DIR__.'/app' => base_path('app'),
-            __DIR__.'/controllers/auth' => base_path('app/http/controllers/auth'),
+            __DIR__.'/mvc/app' => base_path('app'),
+            __DIR__.'/mvc/controllers/auth' => base_path('app/http/controllers/auth'),
         ], 'muffin_auth');
 
 
@@ -66,21 +66,22 @@ class MuffincmsServiceProvider extends ServiceProvider
         $this->publishes([
             // __DIR__.'/routes' => base_path('routes'),
             // __DIR__.'/config' => base_path('config'),
-            __DIR__.'/migrations' => base_path('database/migrations'),
-            // __DIR__.'/views/layouts/' => base_path('resources/views/layouts/'),
+            // __DIR__.'/mvc/migrations' => base_path('database/migrations'),
             // __DIR__.'/assets/css/muffincms' => base_path('public/css/muffincms/'),
             // __DIR__.'/assets/js/muffincms' => base_path('public/js/muffincms/'),
-            // __DIR__.'/controllers/link' => base_path('app/http/controllers/link'),
-            // __DIR__.'/controllers/page' => base_path('app/http/controllers/page'),
-            // __DIR__.'/controllers/admin' => base_path('app/http/controllers/admin'),
-            // __DIR__.'/controllers/text' => base_path('app/http/controllers/text'),
-            // __DIR__.'/views/admins' => base_path('resources/views/admins'),
-            // __DIR__.'/views/pages' => base_path('resources/views/pages'),
-            // __DIR__.'/views/links' => base_path('resources/views/links'),
-            // __DIR__.'/views/texts' => base_path('resources/views/texts'),
-            // __DIR__.'/views/divs' => base_path('resources/views/divs'),
-            // __DIR__.'/views' => base_path('resources/views'),
-            // __DIR__.'/migrations' => base_path('database/migrations/'),
+            // __DIR__.'/mvc/controllers/link' => base_path('app/http/controllers/link'),
+            // __DIR__.'/mvc/controllers/page' => base_path('app/http/controllers/page'),
+            // __DIR__.'/mvc/controllers/post' => base_path('app/http/controllers/post'),
+            // __DIR__.'/mvc/controllers/admin' => base_path('app/http/controllers/admin'),
+            // __DIR__.'/mvc/controllers/text' => base_path('app/http/controllers/text'),
+            // __DIR__.'/mvc/views/layouts/' => base_path('resources/views/layouts/'),
+            // __DIR__.'/mvc/views/admins' => base_path('resources/views/admins'),
+            // __DIR__.'/mvc/views/pages' => base_path('resources/views/pages'),
+            // __DIR__.'/mvc/views/posts' => base_path('resources/views/posts'),
+            // __DIR__.'/mvc/views/links' => base_path('resources/views/links'),
+            // __DIR__.'/mvc/views/texts' => base_path('resources/views/texts'),
+            // __DIR__.'/mvc/views/divs' => base_path('resources/views/divs'),
+            // __DIR__.'/mvc/views' => base_path('resources/views'),
 
         ], 'muffin_dev');
 
@@ -96,7 +97,6 @@ class MuffincmsServiceProvider extends ServiceProvider
     {
         // include __DIR__.'/Routes/web.php';
         // $this->app->make('Johnguild\Muffincms\TestController');
-        require_once __DIR__ . '/Foundations/Helpers/Maintenance.php';
         require_once __DIR__ . '/Foundations/Helpers/Slugger.php';
 
     }

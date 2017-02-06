@@ -23,7 +23,7 @@ trait ModuleController
 	protected static $hierarchy = [
 			'\Text'=>['rank','desc'],
 			'\Link'=>['rank','asc'],
-			'\Div'=>['rank','desc']
+			'\Div'=>['rank','asc']
 		]; 
 
 	/**
@@ -57,5 +57,20 @@ trait ModuleController
 			$modules[] =  $mod . $key;
 		}	
 		return $modules;
+	}
+
+	/**
+	* Get all existing pages tempaltes
+	* @return array
+	*/
+	public static function existingTemplates($v='pages')
+	{
+		$templates = \File::allFiles(resource_path("views/$v"));
+		foreach ($templates as $key => $value) {
+		  $templates[$key] = str_replace(array('.blade.php',"views/$v/"), '', strstr((string)$value, "views/$v/"));
+		}
+		$to_remove = array('create','edit','admin','notfound');
+		$templates = array_diff($templates, $to_remove);
+		return $templates;
 	}
 }

@@ -3,12 +3,16 @@
 namespace Johnguild\Muffincms\Foundations\Controllers\Admin;
 
 // dependencies
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
+use Validator;
+use Input;
 use Auth;
 // models
 use Johnguild\Muffincms\Foundations\Models\Admin\Admin;
 use App\Models\Page\Page;
+use App\Models\Post\Post;
 use App\User;
 
 
@@ -28,25 +32,50 @@ trait AdminController
   public function posts()
   {
     $this->userCheck('posts');
-    return view('admins.posts');
+
+    $posts = Post::paginate(10);
+
+    return view('admins.posts', compact('posts'));
   }
 
   public function pages()
   {
     $this->userCheck('pages');
 
-    $pages = Page::all();
-    // return $pages;
+    $pages = Page::paginate(10);
+    
     return view('admins.pages', compact('pages'));
   }
 
   public function settings()
   {
     $this->userCheck('settings');
-    Admin::toggleMaintenance(true);
+    // Admin::toggleMaintenance(true);
 
-    // return $pages;
-    return view('admins.settings');
+    $maintenance = Admin::key('maintenance')->first(); 
+    $maintenance = $maintenance->val;
+    $maintenance['opening'] = isset($maintenance['opening'])  ? str_replace('+00:00', '', $maintenance['opening']) :'';
+
+    return view('admins.settings', compact('maintenance'));
+  }
+
+  public function update(Request $request)
+  {
+    $this->userCheck('update');
+
+    if(isset($request['maintenance'])){
+      $maintenance = Admin::key('maintenance')->first();
+      $tmp = $maintenance->val;
+      // DEV - update this when opening date is enabled
+      if(!isset($request['mn'])) $tmp = array('on'=>false);
+      foreach ($tmp as $key => $value) {
+        if(isset($request['mn'][$key])) $tmp[$key] = $request['mn'][$key];
+      }
+      $maintenance->val = $tmp;
+      $maintenance->save();
+    }
+
+    return redirect('/admin/settings');
   }
 
 
@@ -56,6 +85,7 @@ trait AdminController
    */
   private function userCheck($a){
     switch ($a) {
+      case 'update':
       case 'dashboard':
       case 'posts':
       case 'pages':

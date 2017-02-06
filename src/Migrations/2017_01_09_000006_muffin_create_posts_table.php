@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MuffinCreateDivsTable extends Migration
+class MuffinCreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class MuffinCreateDivsTable extends Migration
      */
     public function up()
     {
-        Schema::create('divs', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url');
-            $table->string('location');
-            $table->boolean('global')->default(false);
-            $table->integer('rank');
-            $table->string('title')->default('');
+            $table->string('title', 1000)->default('');
+            $table->string('slug', 1000)->default('');
+            $table->string('desc', 5000)->default('');
             $table->string('image', 5000)->default('');
+            $table->boolean('public')->default(false);
+            $table->string('template')->default('index');
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class MuffinCreateDivsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('divs');
+        Schema::dropIfExists('posts');
     }
 }

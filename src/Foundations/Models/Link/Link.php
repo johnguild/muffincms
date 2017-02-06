@@ -3,9 +3,10 @@
 namespace Johnguild\Muffincms\Foundations\Models\Link;
 
 // dependencies
+use Illuminate\Database\Eloquent\Model;
 // models
 
-trait Link
+class Link extends Model
 {
   //
 }

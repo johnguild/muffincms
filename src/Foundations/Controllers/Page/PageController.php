@@ -4,11 +4,13 @@ namespace Johnguild\Muffincms\Foundations\Controllers\Page;
 
 // dependencies
 use App\Http\Controllers\Module\ModuleController;
+use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 // models
 use Johnguild\Muffincms\Foundations\Models\Admin\Admin;
 use App\Models\Page\Page;
+use App\Models\Post\Post;
 use Auth;
 
 
@@ -46,7 +48,7 @@ trait PageController
   public function create()
   {
     $this->userCheck('create');
-    $templates = $this->existingTemplates();
+    $templates = ModuleController::existingTemplates();
 
     return view('pages.create', compact('templates'));
   }
@@ -84,14 +86,22 @@ trait PageController
     $this->userCheck('maintenance');
     $mypage = Page::where('name', $page)->first();
     if(!$mypage){
+      //check if its a post
+      $post = Post::where('slug', $page)->first();
+      if($post) return (new PostController)->show($page);
+
       // DEV -> we want the admin to view a blank page with an option to add this page
       return view($this->pagenotfound);
     }
 
+    if(!$mypage->public && Auth::guest())
+      return redirect('/');
+
     $modules = ModuleController::getContents($mypage->name);
     $mypage->name = substr($mypage->name, 0, 1) === '/' ? substr($mypage->name, 1):$mypage->name;
 
-    return view('pages.'.$mypage->template, compact('mypage','modules'));
+    $url = $mypage->name;
+    return view('pages.'.$mypage->template, compact('url','mypage','modules'));
   }
 
   /**
@@ -104,9 +114,10 @@ trait PageController
   {
     $this->userCheck('edit');
     $page = Page::find($id);
+
     if(!$page) return redirect('/');
 
-    $templates = $this->existingTemplates();
+    $templates = ModuleController::existingTemplates();
     return view('pages.edit', compact('page', 'templates'));
   }
 
@@ -160,11 +171,12 @@ trait PageController
     $appname = config('app.name');
     $mypage = Page::find(1);
     $modules = ModuleController::getContents($mypage->name);
-    return view('pages.'.$mypage->template, compact('appname', 'mypage', 'modules'));
+    $url = 'home';
+    return view('pages.'.$mypage->template, compact('url', 'appname', 'mypage', 'modules'));
   }
 
   /**
-   * Redirects to homepage
+   * Redirects to maintenance page
    */
   public function maintenance(  ){
     
@@ -174,23 +186,8 @@ trait PageController
     $appname = config('app.name');
     $mypage = Page::find(2);
     $modules = ModuleController::getContents($mypage->name);
-    return view('pages.'.$mypage->template, compact('appname', 'mypage', 'modules'));
-  }
-
-  /**
-   * Get all existing pages tempaltes
-   * @return array
-   */
-
-  private function existingTemplates()
-  {
-    $templates = \File::allFiles(resource_path('views/pages'));
-    foreach ($templates as $key => $value) {
-      $templates[$key] = str_replace(array('.blade.php','views/pages/'), '', strstr((string)$value, 'views/pages/'));
-    }
-    $to_remove = array('create','edit','admin','notfound');
-    $templates = array_diff($templates, $to_remove);
-    return $templates;
+    $url = 'maintenance';
+    return view('pages.'.$mypage->template, compact('url','appname', 'mypage', 'modules'));
   }
 
   /**
@@ -208,9 +205,10 @@ trait PageController
           return redirect('/');
         break;
       case 'maintenance':
-        if(Admin::isMaintenance())
+        if(Admin::isMaintenance()){
           if(Auth::check() && Auth::user()->isAdmin()) return false;
           return Redirect::to('/maintenance')->send();
+        }
         break;
       default:
         return false;

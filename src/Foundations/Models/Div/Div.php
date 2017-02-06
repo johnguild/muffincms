@@ -3,9 +3,10 @@
 namespace Johnguild\Muffincms\Foundations\Models\Div;
 
 // dependencies
+use Illuminate\Database\Eloquent\Model;
 // models
 
-trait Div
+class Div extends Model
 {
   //
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MuffinCreateTextsTable extends Migration
+class MuffinCreateViewersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class MuffinCreateTextsTable extends Migration
      */
     public function up()
     {
-        Schema::create('texts', function (Blueprint $table) {
+        Schema::create('viewers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url');
-            $table->string('location');
-            $table->boolean('global')->default(false);
-            $table->integer('rank');
-            $table->string('content', 10000)->default('');
-            $table->timestamps();
+            $table->integer('post_id')->unsigned();
+            $table->timestamp('viewed_at')->nullable();
+            $table->integer('ctr')->default(0);
         });
     }
 
@@ -31,6 +28,6 @@ class MuffinCreateTextsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('texts');
+        Schema::dropIfExists('viewers');
     }
 }
