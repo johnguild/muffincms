@@ -16,8 +16,8 @@ class MuffinCreateViewersTable extends Migration
         Schema::create('viewers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('post_id')->unsigned();
-            $table->timestamp('viewed_at')->nullable();
-            $table->integer('ctr')->default(0);
+            $table->string('ip')->default('');
+            $table->timestamps();
         });
     }
 

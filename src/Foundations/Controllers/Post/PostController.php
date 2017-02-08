@@ -81,9 +81,9 @@ trait PostController
     if(!$post->public && Auth::guest())
       return redirect('/');
 
-    return Carbon::now()->toDateString();
+    $post->addViewer();
 
-    $modules = ModuleController::getContents($post->title);
+    $modules = ModuleController::getContents($post->slug);
     $url = $post->slug;
     return view('posts.'.$post->template, compact('url','post','modules'));
   }
@@ -141,7 +141,7 @@ trait PostController
     $this->userCheck('delete');
     $post = Post::find($id);
     if(!$post) return redirect('/');
-   
+    
     $back = $post->slug;
     $post->delete();
 

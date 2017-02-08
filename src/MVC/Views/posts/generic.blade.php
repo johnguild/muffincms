@@ -2,11 +2,48 @@
 
 @section('title', ucfirst($post->title))
 
+@section('meta')
+    <meta property="og:title" content="{{$post->title}}">
+    <meta property="og:description" content="{{$post->desc}}">
+    <meta property="og:image" content="{{$post->image}}">
+    <meta property="og:url" content="{{Request::url()}}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:site_name" content="{{Config::get('app.name')}}">
+    <meta name="twitter:image:alt" content="{{$post->title}}">
+@endsection
+
 @section('stylesheet')
     <link rel="stylesheet" href="/css/templates/default/main.css" />
 @endsection
 
 @section('content')
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));</script>
+
+
 
     <!-- Header -->
         <header id="header">
@@ -32,11 +69,15 @@
     <!-- Main -->
         <section id="main" class="wrapper">
             <div class="container">
-
+            @include('texts.index', ['data' => $modules['Text'], 'loc'=>'post'.$post->id.'-top-content', 'view'=>'show', 'opt'=>1, 'conf'=>0])
                 <header class="major special">
                     <h2>Generic</h2>
                     <p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
+
+                    @include('socials.share', ['facebook'=>1,'twitter'=>1])
                 </header>
+
+
 
                 <a href="#" class="image fit"><img src="images/pic11.jpg" alt="" /></a>
                 <p>Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.</p>
