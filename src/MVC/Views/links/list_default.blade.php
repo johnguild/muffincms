@@ -12,7 +12,7 @@
 		</div>
 		@endif
 
-		@include('links.'.$view, $link)
+		@include('links.'.$view, ['link'=>$link])
 		
 		@if(Auth::check() && Auth::user()->isAdmin())
 		<div class="@if($opt==2)w-opt-hvr @elseif($opt==1)w-opt @endif">

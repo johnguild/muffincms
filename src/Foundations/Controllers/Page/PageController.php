@@ -172,6 +172,7 @@ trait PageController
     $mypage = Page::find(1);
     $modules = ModuleController::getContents($mypage->name);
     $url = 'home';
+    
     return view('pages.'.$mypage->template, compact('url', 'appname', 'mypage', 'modules'));
   }
 

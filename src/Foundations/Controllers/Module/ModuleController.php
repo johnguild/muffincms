@@ -18,12 +18,14 @@ trait ModuleController
 			'\Text'=>'\App\Models\Text',
 			'\Link'=>'\App\Models\Link',
 			'\Div'=>'\App\Models\Div',
+			'\Image'=>'\App\Models\Image',
 		];
 
 	protected static $hierarchy = [
 			'\Text'=>['rank','desc'],
 			'\Link'=>['rank','asc'],
-			'\Div'=>['rank','asc']
+			'\Div'=>['rank','asc'],
+			'\Image'=>['rank','desc'],
 		]; 
 
 	/**

@@ -14,9 +14,9 @@
 
 		<div class="form-group form-inline">
 				<label for="link-url">Url</label>
-				<input type="link" id="link-url" name="url" value="{{old('url', $link->url)}}" readonly="readonly" class="form-control">	
+				<input type="text" id="link-url" name="url" value="{{old('url', $link->url)}}" readonly="readonly" class="form-control">	
 				<label for="link-location">Location</label>
-				<input type="link" id="link-location" name="location" value="{{old('location', $link->location)}}" readonly="readonly" class="form-control">
+				<input type="text" id="link-location" name="location" value="{{old('location', $link->location)}}" readonly="readonly" class="form-control">
 		</div>
 
 		<div class="checkbox">

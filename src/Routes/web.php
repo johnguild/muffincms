@@ -66,6 +66,14 @@ Route::post('/link/store', 'Link\LinkController@store')->middleware('auth');
 Route::post('/link/update', 'Link\LinkController@update')->middleware('auth');
 Route::get('/link/{wildcard}', 'Link\LinkController@notfound')->where(['wildcard' => '.*']);
 
+// images
+Route::get('/image/edit/{id}', 'Image\ImageController@edit')->middleware('auth');
+Route::get('/image/create/url/{myurl}/location/{myloc}', 'Image\ImageController@create')->middleware('auth');
+Route::get('/image/delete/{id}', 'Image\ImageController@destroy')->middleware('auth');
+Route::post('/image/store', 'Image\ImageController@store')->middleware('auth');
+Route::post('/image/update', 'Image\ImageController@update')->middleware('auth');
+Route::get('/image/{wildcard}', 'Image\ImageController@notfound')->where(['wildcard' => '.*']);
+
 // should the last route
 Route::get('/{page}', 'Page\PageController@show');
 

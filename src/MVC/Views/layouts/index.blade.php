@@ -15,6 +15,7 @@
   <!-- Styles -->
   <link href="/css/app.css" rel="stylesheet">
   <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+  
   <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.min.css">
   <link href="/css/sweetalert/sweetalert.css" rel="stylesheet">
   @if(Auth::check() && Auth::user()->isAdmin())

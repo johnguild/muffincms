@@ -9,7 +9,7 @@
 					@include('modules.conf', ['mod'=>'text', 'id'=>$text->id, 'conf'=>$conf])
 				@endif
 		@endif
-		@include('texts.'.$view, $text)
+		@include('texts.'.$view, ['text'=>$text])
 		@if(Auth::check() && Auth::user()->isAdmin())
 				@if($opt)
 					@include('modules.opt', ['mod'=>'text', 'id'=>$text->id, 'opt'=>$opt])

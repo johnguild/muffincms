@@ -10,14 +10,14 @@
 
 		<div class="form-group form-inline">
 				<label for="link-url">Url</label>
-				<input type="link" id="link-url" name="url" value="{{old('url', $url)}}" readonly="readonly" class="form-control">	
+				<input type="text" id="link-url" name="url" value="{{old('url', $url)}}" readonly="readonly" class="form-control">	
 				<label for="link-location">Location</label>
-				<input type="link" id="link-location" name="location" value="{{old('location', $location)}}" readonly="readonly" class="form-control">
+				<input type="text" id="link-location" name="location" value="{{old('location', $location)}}" readonly="readonly" class="form-control">
 		</div>
 
 		<div class="checkbox">
 	    	<label>
-				<input type="checkbox" name="global" @if(old('global'))checked="checked" @endif> Show on all ({$location}) regardless of the url.
+				<input type="checkbox" name="global" @if(old('global'))checked="checked" @endif> Show on all ({{$location}}) regardless of the url.
 		    </label>
 		</div>
 

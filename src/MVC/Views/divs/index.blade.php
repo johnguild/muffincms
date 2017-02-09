@@ -11,7 +11,7 @@
 			</div>
 		@endif
 
-		@include('divs.'.$view, $div)
+		@include('divs.'.$view, ['div'=>$div])
 		
 		@if(Auth::check() && Auth::user()->isAdmin())
 				@if($opt)
