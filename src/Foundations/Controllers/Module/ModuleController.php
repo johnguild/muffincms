@@ -25,7 +25,7 @@ trait ModuleController
 			'\Text'=>['rank','desc'],
 			'\Link'=>['rank','asc'],
 			'\Div'=>['rank','asc'],
-			'\Image'=>['rank','desc'],
+			'\Image'=>['rank','asc'],
 		]; 
 
 	/**

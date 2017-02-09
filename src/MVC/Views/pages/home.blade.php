@@ -3,7 +3,7 @@
 @section('title', ucfirst($appname))
 
 @section('stylesheet')
-    <link rel="stylesheet" href="/css/templates/default/main.css" />
+    <link rel="stylesheet" href="{{asset('css/templates/default/main.css')}}" />
 @endsection
 
 @section('content')
@@ -162,9 +162,9 @@
 @endsection
 
 @section('script')
-    <script src="/js/templates/default/skel.min.js"></script>
-    <script src="/js/templates/default/util.js"></script>
-    <script src="/js/templates/default/main.js"></script>
+    <script src="{{asset('js/templates/default/skel.min.js')}}"></script>
+    <script src="{{asset('js/templates/default/util.js')}}"></script>
+    <script src="{{asset('js/templates/default/main.js')}}"></script>
     <script type="text/javascript">
         var b = document.getElementsByTagName('body');
         b[0].className+="landing";

@@ -67,7 +67,7 @@
 @endsection
 
 @section('script')
-<script src="/vendor/laravel-filemanager/js/lfm.js"></script>
+<script src="{{asset('vendor/laravel-filemanager/js/lfm.js')}}"></script>
   <script type="text/javascript">
     $(document).ready(function(){
       $('#lfm').filemanager('image');
