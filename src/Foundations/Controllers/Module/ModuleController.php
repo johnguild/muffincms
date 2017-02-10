@@ -22,7 +22,7 @@ trait ModuleController
 		];
 
 	protected static $hierarchy = [
-			'\Text'=>['rank','desc'],
+			'\Text'=>['rank','asc'],
 			'\Link'=>['rank','asc'],
 			'\Div'=>['rank','asc'],
 			'\Image'=>['rank','asc'],

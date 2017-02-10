@@ -49,7 +49,7 @@
 .w-conf > .dropdown > .submenu a, .w-conf-hvr > .dropdown > .submenu a{
 	color: #222 !important;
 	width: 100% !important;
-	margin-left: auto 0;
+	display: block;
 }
 
 .w-conf > .dropdown > .submenu li, .w-conf-hvr > .dropdown > .submenu li{

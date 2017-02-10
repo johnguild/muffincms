@@ -6,7 +6,7 @@
 		@if(Auth::check() && Auth::user()->isAdmin())
 			<div class="@if($conf==2)w-conf-hvr @elseif($conf==1)w-conf @endif @if($opt==2)w-opt-hvr @elseif($opt==1)w-opt @endif">
 				@if($conf)
-					@include('modules.conf', ['mod'=>'image', 'id'=>$image->id, 'conf'=>$conf])
+					@include('modules.conf', ['mod'=>'image', 'id'=>$image->id, 'title'=>$image->title, 'conf'=>$conf])
 				@endif
 		@endif
 		@include('images.'.$view, ['image'=>$image])
