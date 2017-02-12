@@ -50,10 +50,11 @@
 	color: #222 !important;
 	width: 100% !important;
 	display: block;
+	padding: 3% 5%;
 }
 
 .w-conf > .dropdown > .submenu li, .w-conf-hvr > .dropdown > .submenu li{
-	padding: 0px !important;
+	/*padding: 3% 5%;*/
 }
 
 .w-conf .dropdown .submenu ul li{

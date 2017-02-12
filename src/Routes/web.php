@@ -77,7 +77,6 @@ Route::get('/image/{wildcard}', 'Image\ImageController@notfound')->where(['wildc
 // should the last route
 Route::get('/{page}', 'Page\PageController@show');
 
-// check posts first
-Route::get('/{slug}', 'Post\PostController@show');
-
+// lets handle httpRequestNotfound
+Route::get('/{wildcard}', 'Page\PageController@notfound')->where(['wildcard' => '.*']);
 

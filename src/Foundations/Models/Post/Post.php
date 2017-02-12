@@ -31,30 +31,34 @@ class Post extends Model
 		return $this->hasMany(Viewer::class);
 	}
 
-	
+
 	/*--- Scopes ---*/
-	// public function scopeToday( $query ){
+	public function scopeCreatedThisWeek( $query ){
 
-	// 	$dt = Carbon::now()->toDateString();
-	// 	$id = $this->id;
+		$s = Carbon::parse('this sunday')->toDateString();
+		$e = Carbon::parse('this saturday')->toDateString();
 
-	// 	// $query->with(array('viewers' => function($q) use($id,$dt){
-	// 	// 	$q->where([
-	// 	// 				['post_id', '=', $id],
-	// 	// 				['created_at', '=', $dt]
-	// 	// 			]);
-	// 	// }));
-	// }
+		$query->whereBetween('created_at', [$s, $e]);
+	}
 
+
+	public function scopeCreatedThisMonth( $query ){
+
+		$s = Carbon::now()->startOfMonth()->toDateString();
+		$e = Carbon::now()->endOfMonth()->toDateString();
+
+		$query->whereBetween('created_at', [$s, $e]);
+	}
 
 	/*--- Custom ----*/
 
 	public function addViewer()
 	{
 
-		$dt = Carbon::now()->toDateString();
+		// $dt = Carbon::now()->toDateString();
 		// $dt = Carbon::tomorrow()->toDateString();
 		// $dt = Carbon::yesterday()->toDateString();
+		$dt = Carbon::now()->startOfMonth()->toDateString();
 		$viewer = Viewer::where([	['post_id', $this->id],
 									['created_at', $dt],
 									['ip', request()->ip()]
@@ -69,6 +73,21 @@ class Post extends Model
 		
 	}
 
+	public static function getTopViewedThisWeek(){
 
+	    $s = Carbon::parse('this sunday')->toDateString();
+	    $e = Carbon::parse('this saturday')->toDateString();
+	    $res = Post::whereHas('viewers', function($q) use($s, $e){
+	                      $q->whereBetween('created_at', [$s, $e]);
+	                  })->take(4)->get();
+
+	    return $res;
+	}
+
+	public function getThisWeekViewCount(){
+		$s = Carbon::parse('this sunday')->toDateString();
+		$e = Carbon::parse('this saturday')->toDateString();
+		return Viewer::where('post_id',$this->id)->whereBetween('created_at',[$s, $e])->count();
+	}
 
 }

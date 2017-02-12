@@ -40,6 +40,7 @@
                             <tr>
                                 <th>Title</th>
                                 <th>Description</th>
+                                <th>Views Earned</th>
                                 <th>Template</th>
                                 <th>Publicity</th>
                                 <th>Action</th>
@@ -50,6 +51,7 @@
                                 <tr class="@if($post->public) success @else danger @endif">
                                     <td>{{ucfirst($post->title)}}</td>
                                     <td>{{$post->desc}}</td>
+                                    <td>{{$post->total_viewers}}</td>
                                     <td>{{$post->template}}</td>
                                     <td>@if($post->public) Public
                                         @else Private

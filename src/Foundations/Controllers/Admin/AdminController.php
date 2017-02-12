@@ -11,6 +11,7 @@ use Input;
 use Auth;
 // models
 use Johnguild\Muffincms\Foundations\Models\Admin\Admin;
+use App\Models\Post\Viewer;
 use App\Models\Page\Page;
 use App\Models\Post\Post;
 use App\User;
@@ -26,7 +27,18 @@ trait AdminController
   public function dashboard()
   {
     $this->userCheck('dashboard');
-    return view('admins.dashboard');
+
+
+    $week = [];
+    $week['new_posts'] = Post::createdThisWeek()->count();
+    $week['report'] = Viewer::weeklyReport();
+    $week['top_posts'] = Post::getTopViewedThisWeek();
+    // $week['top_posts'] = Post::where();
+
+    // return Viewer::all();
+    // return Viewer::weeklyReport();
+
+    return view('admins.dashboard', compact('week'));
   }
 
   public function posts()

@@ -192,6 +192,16 @@ trait PageController
   }
 
   /**
+   * Redirects to maintenance page
+   */
+  public function notfound(  ){
+
+    return view($this->pagenotfound);
+  }
+
+
+
+  /**
    * Check for admin role
    * @param string $a
    */
