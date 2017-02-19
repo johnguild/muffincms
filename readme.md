@@ -47,6 +47,8 @@ How to install:
 
 			- Run art vendor:publish --tag=muffin_auth --force
 
+			- Run art vendor:publish --tag=muffin_routes --force
+
 			- Edit admin credentials on update user table in migration
 
 			- Run migrate

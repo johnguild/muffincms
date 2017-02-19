@@ -33,12 +33,17 @@ trait AdminController
     $week['new_posts'] = Post::createdThisWeek()->count();
     $week['report'] = Viewer::weeklyReport();
     $week['top_posts'] = Post::getTopViewedThisWeek();
-    // $week['top_posts'] = Post::where();
 
-    // return Viewer::all();
-    // return Viewer::weeklyReport();
+    $month = [];
+    $month['new_posts'] = Post::createdThisMonth()->count();
+    $month['report'] = Viewer::monthlyReport();
+    $month['top_posts'] = Post::getTopViewedThisMonth();
 
-    return view('admins.dashboard', compact('week'));
+    $year = [];
+    $year['report']['2017'] = Viewer::yearlyReport(2017);
+
+    // return $year;
+    return view('admins.dashboard', compact('week', 'month', 'year'));
   }
 
   public function posts()

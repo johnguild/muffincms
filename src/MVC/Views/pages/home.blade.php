@@ -2,6 +2,10 @@
 
 @section('title', ucfirst($appname))
 
+@section('meta')
+    
+@endsection
+
 @section('stylesheet')
     <link rel="stylesheet" href="{{asset('css/templates/default/main.css')}}" />
 @endsection

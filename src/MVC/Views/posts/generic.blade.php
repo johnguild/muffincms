@@ -3,12 +3,15 @@
 @section('title', ucfirst($post->title))
 
 @section('meta')
+    <meta name="description" content="{{$post->desc}}" />
     <meta property="og:title" content="{{$post->title}}">
     <meta property="og:description" content="{{$post->desc}}">
     <meta property="og:image" content="{{$post->image}}">
     <meta property="og:url" content="{{Request::url()}}">
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:site_name" content="{{Config::get('app.name')}}">
+    <meta property="og:image:width" content="450"/>
+    <meta property="og:image:height" content="298"/>
     <meta name="twitter:image:alt" content="{{$post->title}}">
 @endsection
 

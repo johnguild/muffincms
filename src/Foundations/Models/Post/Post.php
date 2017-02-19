@@ -50,15 +50,20 @@ class Post extends Model
 		$query->whereBetween('created_at', [$s, $e]);
 	}
 
+	public function scopeCreatedBetween( $query, $s, $e ){
+
+		$query->whereBetween('created_at', [$s, $e]);
+	}
+
 	/*--- Custom ----*/
 
 	public function addViewer()
 	{
 
-		// $dt = Carbon::now()->toDateString();
+		$dt = Carbon::now()->toDateString();
 		// $dt = Carbon::tomorrow()->toDateString();
 		// $dt = Carbon::yesterday()->toDateString();
-		$dt = Carbon::now()->startOfMonth()->toDateString();
+		// $dt = Carbon::now()->startOfMonth()->toDateString();
 		$viewer = Viewer::where([	['post_id', $this->id],
 									['created_at', $dt],
 									['ip', request()->ip()]
@@ -84,9 +89,26 @@ class Post extends Model
 	    return $res;
 	}
 
+	public static function getTopViewedThisMonth(){
+
+	    $s = Carbon::now()->startOfMonth()->toDateString();
+		$e = Carbon::now()->endOfMonth()->toDateString();
+	    $res = Post::whereHas('viewers', function($q) use($s, $e){
+	                      $q->whereBetween('created_at', [$s, $e]);
+	                  })->take(4)->get();
+
+	    return $res;
+	}
+
 	public function getThisWeekViewCount(){
 		$s = Carbon::parse('this sunday')->toDateString();
 		$e = Carbon::parse('this saturday')->toDateString();
+		return Viewer::where('post_id',$this->id)->whereBetween('created_at',[$s, $e])->count();
+	}
+
+	public function getThisMonthViewCount(){
+		$s = Carbon::now()->startOfMonth()->toDateString();
+		$e = Carbon::now()->endOfMonth()->toDateString();
 		return Viewer::where('post_id',$this->id)->whereBetween('created_at',[$s, $e])->count();
 	}
 
