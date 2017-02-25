@@ -75,8 +75,8 @@ class ImageController extends Controller
     $image->location = $request['location'];
     $image->global = ($request['global'] ? 1:0);
     $image->rank = $rank;
-    $image->alt = $request['alt'];
-    $image->image = $request['image'];
+    $image->alt = isSetted($request['alt']);
+    $image->image = isSetted($request['image']);
     $image->save();
 
     return redirect($image->url);
@@ -100,8 +100,8 @@ class ImageController extends Controller
     $image->url = $request['url'];
     $image->location = $request['location'];
     $image->global = ($request['global'] ? 1:0);
-    $image->alt = $request['alt'];
-    $image->image = $request['image'];
+    $image->alt = isSetted($request['alt']);
+    $image->image = isSetted($request['image']);
     $image->save();
 
     return redirect('/'.$image->url);

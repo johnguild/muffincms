@@ -38,12 +38,14 @@ class PageController extends Controller
       case 'update':
         return [
           'name'  => 'required|max:255|unique:pages,name,'.$id,
+          'desc'  => 'required|max:5000'
         ];
         break;
       case 'store':
       default:
         return [
           'name'  => 'required|max:255|unique:pages',
+          'desc'  => 'required|max:5000'
         ];
         break;
     }
@@ -64,6 +66,7 @@ class PageController extends Controller
 
     $page = new Page();
     $page->name = makeSlug($request['name']);
+    $page->desc = $request['desc'];
     $page->public = isset($request['public']) ? true:false;
     $page->template = isset($request['template']) ? $request['template']:'index';
     $page->save();
@@ -88,6 +91,7 @@ class PageController extends Controller
     $this->validator($request->all(), $this->getRulesTo('update', $request['id']))->validate();
 
     $page->name = makeSlug($request['name']);
+    $page->desc = $request['desc'];
     $page->public = isset($request['public']) ? true:false;
     $page->template = isset($request['template']) ? $request['template']:'index';
     $page->save();

@@ -3,7 +3,7 @@
 @section('title', ucfirst($appname))
 
 @section('meta')
-    
+    <meta name="description" content="{{$mypage->desc}}">
 @endsection
 
 @section('stylesheet')

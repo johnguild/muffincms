@@ -65,7 +65,7 @@ trait DivController
     $div->global = ($request['global'] ? 1:0);
     $div->rank = $rank;
     $div->title = $request['title'];
-    $div->image = $request['image'];
+    $div->image = isSetted($request['image']);
     $div->save();
 
     return redirect($div->url);
@@ -116,7 +116,7 @@ trait DivController
     $div->location = $request['location'];
     $div->global = ($request['global'] ? 1:0);
     $div->title = $request['title'];
-    $div->image = $request['image'];
+    $div->image = isSetted($request['image']);
     $div->save();
 
     return redirect('/'.$div->url);

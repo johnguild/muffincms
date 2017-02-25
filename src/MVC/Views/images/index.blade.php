@@ -3,19 +3,15 @@
 	@if(isset($limit) && $datactr >= $limit) @break @endif
 	@if($image->location != $loc) @continue @endif
 	@php $datactr++; @endphp
-		@if(Auth::check() && Auth::user()->isAdmin())
-			<div class="@if($conf==2)w-conf-hvr @elseif($conf==1)w-conf @endif @if($opt==2)w-opt-hvr @elseif($opt==1)w-opt @endif">
-				@if($conf)
-					@include('modules.conf', ['mod'=>'image', 'id'=>$image->id, 'title'=>$image->title, 'conf'=>$conf])
-				@endif
-		@endif
+
+	@if(isset($view))
 		@include('images.'.$view, ['image'=>$image])
-		@if(Auth::check() && Auth::user()->isAdmin())
-				@if($opt)
-					@include('modules.opt', ['mod'=>'image', 'id'=>$image->id, 'opt'=>$opt])
-				@endif
-			</div>
-		@endif
+		@continue
+	@endif
+
+
+	<img src="{{$image->image}}" alt="{{$image->alt}}" class="muff muff-img"  data-muff-id="{{$image->id}}">	
+
 @endforeach
 {{-- Add more Image --}}
 @if(Auth::check() && Auth::user()->isAdmin() )

@@ -67,6 +67,7 @@ trait PageController
 
     $page = new Page();
     $page->name = makeSlug($request['name']);
+    $page->desc = $request['desc'];
     $page->public = isset($request['public']) ? true:false;
     $page->template = isset($request['template']) ? $request['template']:'index';
     $page->save();
@@ -137,6 +138,7 @@ trait PageController
     $this->validator($request->all(), $this->getRulesTo('update', $request['id']))->validate();
 
     $page->name = makeSlug($request['name']);
+    $page->desc = $request['desc'];
     $page->public = isset($request['public']) ? true:false;
     $page->template = isset($request['template']) ? $request['template']:'index';
     $page->save();

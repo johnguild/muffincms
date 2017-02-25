@@ -2,6 +2,10 @@
 
 @section('title', ucfirst($mypage->name))
 
+@section('meta')
+    <meta name="description" content="{{$mypage->desc}}">
+@endsection
+
 @section('stylesheet')
     <link rel="stylesheet" href="{{asset('css/templates/default/main.css')}}" />
 @endsection

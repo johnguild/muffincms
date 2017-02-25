@@ -20,6 +20,16 @@
 				@endif
 			</div>
 
+			<div class="form-group{{ $errors->has('desc') ? ' has-error' : '' }}">
+				<label for="page-desc">Description</label>
+				<textarea cols="15" rows="5" id="page-desc" class="ckeditor" name="desc">{{old('desc', $page->desc)}}</textarea>
+				@if ($errors->has('desc'))
+			        <span class="help-block">
+			            <strong>{{ $errors->first('desc') }}</strong>
+			        </span>
+			    @endif
+			</div>
+
 			<div class="checkbox">
 		    	<label>
 					<input type="checkbox" name="public" @if(old('public') || $page->public)checked="checked" @endif> Open to public

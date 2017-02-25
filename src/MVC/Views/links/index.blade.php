@@ -3,19 +3,21 @@
 	@if(isset($limit) && $datactr >= $limit) @break @endif
 	@if($link->location != $loc) @continue @endif
 	@php $datactr++; @endphp
-		@if(Auth::check() && Auth::user()->isAdmin())
-			<div class="@if($conf==2)w-conf-hvr @elseif($conf==1)w-conf @endif @if($opt==2)w-opt-hvr @elseif($opt==1)w-opt @endif">
-				@if($conf)
-					@include('modules.conf', ['mod'=>'link', 'id'=>$link->id, 'title'=>$link->title, 'conf'=>$conf])
-				@endif
-		@endif
+
+	@if(isset($view))
 		@include('links.'.$view, ['link'=>$link])
-		@if(Auth::check() && Auth::user()->isAdmin())
-				@if($opt)
-					@include('modules.opt', ['mod'=>'link', 'id'=>$link->id, 'opt'=>$opt])
-				@endif
-			</div>
+		@continue
+	@endif
+
+		
+	<a href="{{$link->address}}" alt="{{$link->alt}}" class="muff muff-a"  data-muff-id="{{$link->id}}" @if($link->new_window) target="_blank" @endif >
+		@if($link->image)
+			<img src="{{$link->image}}" width="250px" height="250px">
+		@else
+			{{$link->title}}
 		@endif
+	</a>
+
 @endforeach
 {{-- Add more link --}}
 @if(Auth::check() && Auth::user()->isAdmin() )

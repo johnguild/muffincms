@@ -82,7 +82,7 @@ class LinkController extends Controller
     $link->title = $request['title'];
     $link->address = $request['address'];
     $link->alt = $request['alt'];
-    $link->image = $request['image'];
+    $link->image = isSetted($request['image']);
     $link->new_window = ($request['new_window'] ? 1:0);
     $link->save();
 
@@ -110,7 +110,7 @@ class LinkController extends Controller
     $link->title = $request['title'];
     $link->address = $request['address'];
     $link->alt = $request['alt'];
-    $link->image = $request['image'];
+    $link->image = isSetted($request['image']);
     $link->new_window = ($request['new_window'] ? 1:0);
     $link->save();
 

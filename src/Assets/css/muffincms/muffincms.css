@@ -1,103 +1,63 @@
-.w-conf>.dropdown>.submenu>li>a,
-.w-conf-hvr>.dropdown>.submenu>li>a,
-.w-opt>.opt-div>a,
-.w-opt-hvr>.opt-div>a,
-.w-add > a{
-	text-decoration: none !important;
-	font-size: 14px !important;
+#muff-opt{
+    overflow: hidden;
+    padding: 4px;
+    min-width: 140px;
+    max-width: 500px;
+    max-height: 44px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #f4f1ee; 
 }
 
-.opt-div a, 
-.opt-div form button,
-.w-add a{
-	border-radius: 0px !important;
-	border: 2px !important;
-	color: #fff !important;
+#muff-opt a.mbtn{
+    font-family: FontAwesome;
+    border-radius: 50%;
+    float:left;
+    height: 32px;
+    margin: 2px 4px;
+    position: relative;
+    width: 32px;
+    -webkit-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+    background-color:#fff;
 }
 
-/*--- Configure Button ---*/
-.conf-btn{
+#muff-opt .mbtn:after{
+    color:#ccc;
+    content: "";
+    display: block;
+    font-size: 16px;
+    height: 16px;
+    text-decoration: none;
+    position: absolute;
+    width: 16px;
 }
 
-.conf-hvr-btn{
-	display: none;
+#muff-opt .edit:after{
+    content: "\f040";
+    left: 9px;
+    top: 4px;
 }
 
-.conf-btn, .conf-hvr-btn{
-	font-size: 18px !important;
+#muff-opt .delete:after{
+    content: "\f00d";
+    left: 9px;
+    top: 4px;
 }
 
-.w-conf-hvr:hover .conf-hvr-btn{
-	display: block;
+#muff-opt .mbtn.edit:hover{
+    background-color:#f0ad4e;
 }
 
-.w-conf > .dropdown > .submenu, .w-conf-hvr > .dropdown > .submenu{
-	display:block;
-	list-style-type: none !important;
-	position:absolute !important;
-	padding: 2px !important;
-	top: 16px !important;
-	right: 9px !important;
-	background-color: #fff !important;
-	width: 100px !important;
-	text-align: center !important;
-  	z-index: 9999 !important;
-  	display: none;
-  	border: solid 1px #ddd !important;
+#muff-opt .mbtn.delete:hover{
+    background-color:#d9534f;
 }
 
-.w-conf > .dropdown > .submenu a, .w-conf-hvr > .dropdown > .submenu a{
-	color: #222 !important;
-	width: 100% !important;
-	display: block;
-	padding: 3% 5%;
+#muff-opt span{
+    vertical-align: middle;
+    line-height: normal;
+    font-size: 11pt;
 }
-
-.w-conf > .dropdown > .submenu li, .w-conf-hvr > .dropdown > .submenu li{
-	/*padding: 3% 5%;*/
-}
-
-.w-conf .dropdown .submenu ul li{
-	list-style-type: none !important;
-	text-decoration: none !important;
-	width: 100% !important;
-}
-
-.w-conf > .dropdown:hover .submenu, .w-conf-hvr > .dropdown:hover .submenu{
-	display: block;
-}
-
-.w-conf .submenu li:hover, .w-conf-hvr .submenu li:hover{
-	background-color: #ddd !important;
-}
-
-.w-conf .submenu li a:hover, .w-conf-hvr .submenu li a:hover{
-	text-decoration: none;
-}
-/*--- End ---*/
-
-/*--- Option Styling ---*/
-.opt-div{
-	padding: 2px !important;
-}
-
-
-
-.opt-div .clear{
-	clear: both;
-}
-
-.w-opt-hvr .opt-div{
-	display: none;
-	z-index: 999999 !important;
-	margin-left: auto !important;
-	transition: all 3s linear;
-}
-
-.w-opt-hvr:hover .opt-div{
-	display:block;
-}
-
 /*--- End ---*/
 
 

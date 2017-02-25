@@ -3,19 +3,17 @@
 	@if(isset($limit) && $datactr >= $limit) @break; @endif
 	@if($text->location != $loc) @continue @endif
 	@php $datactr++; @endphp
-		@if(Auth::check() && Auth::user()->isAdmin())
-			<div class="@if($conf==2)w-conf-hvr @elseif($conf==1)w-conf @endif @if($opt==2)w-opt-hvr @elseif($opt==1)w-opt @endif">
-				@if($conf)
-					@include('modules.conf', ['mod'=>'text', 'id'=>$text->id, 'title'=>$text->title,'conf'=>$conf])
-				@endif
-		@endif
+
+	@if(isset($view))
 		@include('texts.'.$view, ['text'=>$text])
-		@if(Auth::check() && Auth::user()->isAdmin())
-				@if($opt)
-					@include('modules.opt', ['mod'=>'text', 'id'=>$text->id, 'opt'=>$opt])
-				@endif
-			</div>
-		@endif
+		@continue
+	@endif
+
+
+	<div class="muff muff-text" data-muff-id="{{$text->id}}">
+		{!! str_replace('&nbsp;', ' ', html_entity_decode($text->content)) !!}
+	</div>
+		
 @endforeach
 {{-- Add More Link --}}
 @if(Auth::check() && Auth::user()->isAdmin())

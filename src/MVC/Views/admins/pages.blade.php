@@ -40,6 +40,7 @@
                         <thead>
                             <tr>
                                 <th>Page Name</th>
+                                <th>Description</th>
                                 <th>Template</th>
                                 <th>Publicity</th>
                                 <th>Action</th>
@@ -49,6 +50,7 @@
                             @foreach($pages as $page)
                                 <tr class="@if($page->public) success @else danger @endif">
                                     <td>{{ucfirst($page->name)}}</td>
+                                    <td>{{ucfirst($page->desc)}}</td>
                                     <td>{{ucfirst($page->template)}}</td>
                                     <td>@if($page->public) Public
                                         @else Private
