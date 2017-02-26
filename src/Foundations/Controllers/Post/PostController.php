@@ -58,7 +58,7 @@ trait PostController
     $post->title = $request['title'];
     $post->slug = makeSlug($request['title']);
     $post->desc = $request['desc'];
-    $post->image = $request['image'];
+    $post->image = isSetted($request['image']);
     $post->public = ($request['public'] ? 1:0);
     $post->template = $request['template'];
     $post->save();
@@ -122,7 +122,7 @@ trait PostController
     $post->title = $request['title'];
     $post->slug = makeSlug($request['title']);
     $post->desc = $request['desc'];
-    $post->image = $request['image'];
+    $post->image = isSetted($request['image']);
     $post->public = ($request['public'] ? 1:0);
     $post->template = $request['template'];
     $post->save();

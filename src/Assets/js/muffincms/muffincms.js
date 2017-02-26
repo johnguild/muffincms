@@ -70,7 +70,6 @@ $(document).ready(function(){
 				});
 			return false;
 		});
-		
 	}
 
 	toggleMuffEditor(false);
@@ -135,6 +134,104 @@ $(document).ready(function(){
 			}
 		});
 	}
+
+
+	// TAGs
+
+	//var tagArea = '.tag-area';
+	if($('.tagarea')[0]){
+		var backSpace;
+		var close = '<a class="close"></a>'; 
+		var PreTags = $('.tagarea').val().trim().split(" ");
+
+		$('.tagarea').after('<ul class="tag-box"></ul>');
+
+		for (i=0 ; i < PreTags.length; i++ ){
+		  var pretag = PreTags[i].split("_").join(" ");
+		  if($('.tagarea').val().trim() != "" )
+		  	$('.tag-box').append('<li class="tags"><input type="hidden" name="tags[]" value="'+pretag+'">'+pretag+close+'</li>');
+		}
+
+		$('.tag-box').append('<li class="new-tag"><input class="input-tag" type="text"></li>');
+
+		// unbind submit form when pressing enter
+		$('.input-tag').on('keyup keypress', function(e) {
+		  var keyCode = e.keyCode || e.which;
+		  if (keyCode === 13) { 
+		    e.preventDefault();
+		    return false;
+		  }
+		});
+
+		// Taging 
+		$('.input-tag').bind("keydown", function (kp) {
+		    var tag = $('.input-tag').val().trim();
+		    if(tag.length > 0){
+		  		$(".tags").removeClass("danger");
+		        if(kp.keyCode  == 13 || kp.keyCode == 9){
+		          $(".new-tag").before('<li class="tags"><input type="hidden" name="tags[]" value="'+tag+'">'+tag+close+'</li>');
+		           $(this).val('');
+		    }}
+		  		
+		    else {if(kp.keyCode == 8 ){
+		      	if($(".new-tag").prev().hasClass("danger")){
+			        $(".new-tag").prev().remove(); 
+		      	}else{
+		      		$(".new-tag").prev().addClass("danger");
+		      	}
+		    }
+		   }
+		});
+
+		  //Delete tag
+		$(".tag-box").on("click", ".close", function()  {
+		  $(this).parent().remove();
+		});
+		$(".tag-box").click(function(){
+		 	$('.input-tag').focus();
+		});
+		// Edit
+		$('.tag-box').on("dblclick" , ".tags", function(cl){
+		  var tags = $(this); 
+		  var tag = tags.text().trim();
+		  $('.tags').removeClass('edit');
+		  tags.addClass('edit');
+		  tags.html('<input class="input-tag" value="'+tag+'" type="text">')
+		  $(".new-tag").hide();
+		  tags.find('.input-tag').focus();
+		  
+		 tag = $(this).find('.input-tag').val() ;
+		 $('.tags').dblclick(function(){ 
+		    tags.html(tag + close);
+		   	$('.tags').removeClass('edit');
+		    $(".new-tag").show();
+		  });
+		  
+		  tags.find('.input-tag').bind("keydown", function (edit) {
+		    	tag = $(this).val() ;
+		      if(edit.keyCode  == 13){
+		          $(".new-tag").show();
+		          $('.input-tag').focus();
+		          $('.tags').removeClass('edit');
+		          if(tag.length > 0){
+		            tags.html('<input type="hidden" name="tags[]" value="'+tag+'">'+tag + close);
+		          }
+		          else{
+		            tags.remove();
+		          }
+		      }
+			});  
+		});
+	}
+	// sorting
+	// $(function() {
+	// $( ".tag-box" ).sortable({
+	// items: "li:not(.new-tag)",
+	//   containment: "parent",
+	//   scrollSpeed: 100
+	// });
+	// $( ".tag-box" ).disableSelection();
+	// });
 
 });
 
