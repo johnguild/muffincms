@@ -24,7 +24,7 @@
 
 		<div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
 			<label for="text-content">Content</label>
-			<textarea cols="15" rows="5" id="text-content" class="ckeditor" name="content">{{old('content')}}</textarea>
+			<textarea cols="15" rows="5" id="text-content" class="tinyeditor" name="content">{{old('content')}}</textarea>
 			@if ($errors->has('content'))
 		        <span class="help-block">
 		            <strong>{{ $errors->first('content') }}</strong>
