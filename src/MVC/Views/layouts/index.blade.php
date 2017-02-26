@@ -34,6 +34,17 @@
 <body>
   @yield('content')
 
+  @if(Auth::check() && Auth::user()->isAdmin())
+  <div class="muff-editor text-center">
+    <div class="row">
+      <i class="fa fa-pencil fa-3x" aria-hidden="true"></i>
+    </div>
+    <div class="row">
+      Turn On Edit Mode
+      <span class="clearfix"><input type="checkbox" name="cb-muff-editor"></span>
+    </div>
+  </div>
+  @endif
 
   <!-- Scripts -->
   <script src="{{asset('js/app.js')}}"></script>
