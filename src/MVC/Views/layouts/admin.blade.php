@@ -194,7 +194,7 @@
     // Initialize TinyMCE
     var editor_config = {
       path_absolute : "{{URL::to('/')}}/",
-      selector: "textarea",
+      selector: "textarea.tinyeditor",
       force_p_newlines : false,
       force_br_newlines : true,
       convert_newlines_to_brs : false,
