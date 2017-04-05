@@ -24,32 +24,27 @@ How to install:
 
 					tutorials : https://www.youtube.com/watch?v=vBzg0Us5MDk
 
-			
-			- Paste the package in root/packages/johnguild/muffincms
+			- Require this package
 
 			- Add the package's service provider in your config/app.php under providers.
 
 						Johnguild\Muffincms\MuffincmsServiceProvider::class,
 
-			- Add the package in your composer.json under autoload.
-
-			      "psr-4": {
-
-			          "App\\": "app/",
-
-			          "Johnguild\\Muffincms\\": "packages/johnguild/muffincms/src"
-
-			      }
-
 			- Run composer dump-autoload to update the file.
 
-			- Run art vendor:publish --tag=muffin_cms
+			- Run php artisan vendor:publish --tag=muffin_config
 
-			- Run art vendor:publish --tag=muffin_auth --force
+			- Run php artisan vendor:publish --tag=muffin_views
 
-			- Run art vendor:publish --tag=muffin_routes --force
+			- Run php artisan vendor:publish --tag=muffin_public
 
-			- Edit admin credentials on update user table in migration
+			- Run php artisan vendor:publish --tag=muffin_admin --force
+
+			- Run php artisan vendor:publish --tag=muffin_auth --force
+
+			- Run php artisan vendor:publish --tag=muffin_route --force
+
+			- Edit admin credentials create_website_admin migration
 
 			- Run migrate
 
