@@ -30,8 +30,6 @@ How to install:
 
 						Johnguild\Muffincms\MuffincmsServiceProvider::class,
 
-			- Run composer dump-autoload to update the file.
-
 			- Run php artisan vendor:publish --tag=muffin_config
 
 			- Run php artisan vendor:publish --tag=muffin_views
@@ -49,11 +47,9 @@ How to install:
 			- Run migrate
 
 
-
 Start creating your websites pages contents
 
 
-Notes: once installed you should NOT delete the packages
 
 
 
