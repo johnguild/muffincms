@@ -41,7 +41,7 @@ class MuffinCreatePagesTable extends Migration
         $page->name = 'about-us';
         $page->desc = 'This is your about us description';
         $page->public = true;
-        $page->template = 'generic';
+        $page->template = 'home';
         $page->save();
     }
 

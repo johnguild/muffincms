@@ -16,7 +16,7 @@ Includes
 
 How to install:
 
-			- Create your laravel project.
+			- Create your laravel project and setup .env
 
 			- Run php artisan make:auth to use laravels authenticable user
 
@@ -24,7 +24,7 @@ How to install:
 
 					tutorials : https://www.youtube.com/watch?v=vBzg0Us5MDk
 
-			- Require this package
+			- Run composer require johnguild/muffincms dev-master
 
 			- Add the package's service provider in your config/app.php under providers.
 

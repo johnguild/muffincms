@@ -49,7 +49,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         if(!config('muffincms.registration')) return redirect('/');
-        return view('users.register');
+        return view('muffincms::users.register');
     }
     
 

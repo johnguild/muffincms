@@ -1,5 +1,5 @@
 <?php
-$middleware = array_merge(\Config::get('muffincms.middlewares'), [
+$middleware = array_merge(\Config::get('muffincms.middlewares', ['web','auth']), [
         '\Johnguild\Muffincms\middlewares\SuperAdmin'
     ]);
 // $middleware = \Config::get('muffincms.middlewares');
