@@ -18,7 +18,7 @@ How to install:
 
 			- Create your laravel project.
 
-			- Run make:auth to use laravels authenticable user
+			- Run php artisan make:auth to use laravels authenticable user
 
 			- Install and Integrate https://github.com/UniSharp/laravel-filemanager
 
