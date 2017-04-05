@@ -1,6 +1,7 @@
 {
     "name": "johnguild/muffincms",
     "description": "Upgrades youre laravel project into Content Management System",
+    "license": "MIT",
     "authors": [
         {
             "name": "John Robin Perez",
