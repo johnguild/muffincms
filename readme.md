@@ -1,53 +1,59 @@
-Muffin Content Management System
+# Muffin Content Management System
+[![Latest Stable Version]](https://packagist.org/packages/johnguild/muffincms)
+[![Total Downloads]](https://packagist.org/packages/johnguild/muffincms)
+[![License]](https://packagist.org/packages/johnguild/muffincms)
 
- -The Package lets you make your laravel project into a CMS 
+## Requires
+ * [Unisharp/Larvelfilemanaer](https://github.com/UniSharp/laravel-filemanager)
 
-Version 1.0
+## Icludes
+ * TinyMCE 4
+ * Font Awesome 4.7.0
+ * [Sweetalert](https://github.com/t4t5/sweetalert)
 
-Compatibility - Laravel 5.3+
+## Installation
+Create your laravel project as you normally do and setup .env
 
-Includes
+We will be using the laravel authenticable user so run
 
-			- TinyMCE 4
+  ```bash
+  php artisan make:auth
+  ```
 
-			- Font Awesome 4.7.0
+Install and Integrate [Unisharp/Laravelfilemanager](https://github.com/UniSharp/laravel-filemanager)
 
-			- Sweetalert
+Install Package :
 
-How to install:
+  ```bash
+  composer require johnguild/muffincms
+  ```
 
-			- Create your laravel project and setup .env
+Edit config/app.php :
 
-			- Run php artisan make:auth to use laravels authenticable user
+ Add Service Provider
 
-			- Install and Integrate https://github.com/UniSharp/laravel-filemanager
+  ```php
+  Johnguild\Muffincms\MuffincmsServiceProvider::class,
+  ```
 
-					tutorials : https://www.youtube.com/watch?v=vBzg0Us5MDk
+Publish the package's config, assets, and resources :
 
-			- Run composer require johnguild/muffincms dev-master
+  ```bash
+  php artisan vendor:publish --tag=muffin_config
+  php artisan vendor:publish --tag=muffin_views
+  php artisan vendor:publish --tag=muffin_public
+  php artisan vendor:publish --tag=muffin_admin --force
+  php artisan vendor:publish --tag=muffin_auth --force
+  php artisan vendor:publish --tag=muffin_route --force
+  ```
 
-			- Add the package's service provider in your config/app.php under providers.
+Migrate tables :
 
-						Johnguild\Muffincms\MuffincmsServiceProvider::class,
+ Make sure to edit the admin credential in database/migrations/muffin_create_website_admin
 
-			- Run php artisan vendor:publish --tag=muffin_config
-
-			- Run php artisan vendor:publish --tag=muffin_views
-
-			- Run php artisan vendor:publish --tag=muffin_public
-
-			- Run php artisan vendor:publish --tag=muffin_admin --force
-
-			- Run php artisan vendor:publish --tag=muffin_auth --force
-
-			- Run php artisan vendor:publish --tag=muffin_route --force
-
-			- Edit admin credentials create_website_admin migration
-
-			- Run migrate
-
-
-Start creating your websites pages contents
+ ```php
+ php artisan migrate
+ ```
 
 
 
