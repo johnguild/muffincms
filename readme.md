@@ -1,12 +1,12 @@
 # Muffin Content Management System
-[![Latest Stable Version]](https://packagist.org/packages/johnguild/muffincms)
-[![Total Downloads]](https://packagist.org/packages/johnguild/muffincms)
-[![License]](https://packagist.org/packages/johnguild/muffincms)
+[![Latest Stable Version](https://poser.pugx.org/johnguild/muffincms/v/stable)](https://packagist.org/packages/johnguild/muffincms)
+[![Total Downloads](https://poser.pugx.org/johnguild/muffincms/downloads)](https://packagist.org/packages/johnguild/muffincms)
+[![License](https://poser.pugx.org/johnguild/muffincms/license)](https://packagist.org/packages/johnguild/muffincms)
 
 ## Requires
  * [Unisharp/Larvelfilemanaer](https://github.com/UniSharp/laravel-filemanager)
 
-## Icludes
+## Includes
  * TinyMCE 4
  * Font Awesome 4.7.0
  * [Sweetalert](https://github.com/t4t5/sweetalert)
