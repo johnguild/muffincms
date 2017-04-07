@@ -1,10 +1,10 @@
 @extends('muffincms::layouts.index')
 
-@section('title', ucfirst($mypage->name))
+@section('title', ucfirst(unSlug(mypage()->name)))
 
 @section('meta')
-    <meta name="description" content="{{$mypage->desc}}">
-    <meta name="muffin-url" content="{{$url}}">
+    <meta name="description" content="{{mypage()->desc}}">
+    <meta name="muffin-url" content="{{mypage()->name}}">
 @endsection
 
 @section('stylesheet')
@@ -24,11 +24,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="#page-top">@include('muffincms::modules.text', 
-                                                                ['data'=>$modules['text'], 
-                                                                'loc'=>'webname',
-                                                                'limit'=>1,
-                                                                'mess'=>'website-name'])</a>
+                    <a class="navbar-brand" href="#page-top">@include('muffincms::modules.text', ['loc'=>'webname','limit'=>1,'mess'=>'website-name'])</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,11 +33,15 @@
                         <li class="hidden">
                             <a href="#page-top"></a>
                         </li>
-                        @include('muffincms::modules.link', 
-                                        ['data'=>$modules['link'], 
-                                        'loc'=>'nav-link',
-                                        'wrapbegin'=>"<li class='page-scroll'>",
-                                        'wrapend'=>"</li>"])
+                        @include('muffincms::modules.link', ['loc'=>'nav-link','wrapbegin'=>"<li class='page-scroll'>",'wrapend'=>"</li>"])
+                        @if(Auth::check())
+                        <li class='page-scroll'><a href="{{ url('/logout') }}"
+                            onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">LOGOUT</a>
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST">
+                            {{ csrf_field() }}
+                        </form></li>
+                        @endif
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -54,21 +54,11 @@
             <div class="container" id="maincontent" tabindex="-1">
                 <div class="row">
                     <div class="col-lg-12">
-                        @include('muffincms::modules.image', 
-                                            ['data'=>$modules['image'], 
-                                            'loc'=>'logo',
-                                            'limit'=>1,
-                                            'mess'=>'logo'])
+                        @include('muffincms::modules.image', ['loc'=>'logo','limit'=>1,'mess'=>'logo'])
                         <div class="intro-text">
-                            <h1 class="name">@include('muffincms::modules.text', 
-                                                                ['data'=>$modules['text'], 
-                                                                'loc'=>'webname',
-                                                                'limit'=>1,
-                                                                'mess'=>'website-name'])</h1>
+                            <h1 class="name">@include('muffincms::modules.text', ['loc'=>'webname','limit'=>1,'mess'=>'website-name'])</h1>
                             <hr class="star-light">
-                            <span class="skills">@include('muffincms::modules.text', 
-                                                                ['data'=>$modules['text'], 
-                                                                'loc'=>'header'])</span>
+                            <span class="skills">@include('muffincms::modules.text', ['loc'=>'header'])</span>
                         </div>
                     </div>
                 </div>
@@ -94,11 +84,8 @@
                                         <i class="fa fa-search-plus fa-3x"></i>
                                     </div>
                                 </div>
-                                @include('muffincms::modules.image', 
-                                                ['data'=>$modules['image'], 
-                                                'loc'=>'portfolio-'.$pf,
-                                                'limit'=>1,
-                                                'mess'=>'Add photo for portfolio '.$pf,
+                                @include('muffincms::modules.image', ['loc'=>'portfolio-'.$pf,'limit'=>1,
+                                                'mess'=>'Add photo for portfolio '.$pf, 
                                                 'addclass'=>'pull-left'])
                             </a>
                         </div>
@@ -120,16 +107,10 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-lg-offset-2">
-                        @include('muffincms::modules.text', 
-                                            ['data'=>$modules['text'], 
-                                            'loc'=>'about-1',
-                                            'limit'=>1])
+                        @include('muffincms::modules.text', ['loc'=>'about-1','limit'=>1])
                     </div>
                     <div class="col-lg-4">
-                        @include('muffincms::modules.text', 
-                                            ['data'=>$modules['text'], 
-                                            'loc'=>'about-2',
-                                            'limit'=>1])
+                        @include('muffincms::modules.text', ['loc'=>'about-2','limit'=>1])
                     </div>
                     <div class="col-lg-8 col-lg-offset-2 text-center">
                         <a href="#" class="btn btn-lg btn-outline">
@@ -201,10 +182,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="footer-col col-md-4">
-                            @include('muffincms::modules.text', 
-                                            ['data'=>$modules['text'], 
-                                            'loc'=>'footer-1',
-                                            'limit'=>1])
+                            @include('muffincms::modules.text', ['loc'=>'footer-1','limit'=>1])
                         </div>
                         <div class="footer-col col-md-4">
                             <h3>Around the Web</h3>
@@ -227,10 +205,7 @@
                             </ul>
                         </div>
                         <div class="footer-col col-md-4">
-                            @include('muffincms::modules.text', 
-                                            ['data'=>$modules['text'], 
-                                            'loc'=>'footer-3',
-                                            'limit'=>1])
+                            @include('muffincms::modules.text', ['loc'=>'footer-3','limit'=>1])
                         </div>
                     </div>
                 </div>
@@ -239,10 +214,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            @include('muffincms::modules.text', 
-                                            ['data'=>$modules['text'], 
-                                            'loc'=>'copyright',
-                                            'limit'=>1])
+                            @include('muffincms::modules.text', ['loc'=>'copyright','limit'=>1])
                         </div>
                     </div>
                 </div>
@@ -272,18 +244,15 @@
                             <div class="col-lg-8 col-lg-offset-2">
                                 <div class="modal-body">
                                     @include('muffincms::modules.text', 
-                                                ['data'=>$modules['text'], 
-                                                'loc'=>'portfolio-'.$pf.'-title',
+                                                ['loc'=>'portfolio-'.$pf.'-title',
                                                 'limit'=>1,
                                                 'mess'=>'Add title'])
                                     <hr class="star-primary">
                                     @include('muffincms::modules.image', 
-                                                ['data'=>$modules['image'], 
-                                                'loc'=>'portfolio-'.$pf,
+                                                ['loc'=>'portfolio-'.$pf,
                                                 'limit'=>1])
                                     @include('muffincms::modules.text', 
-                                                ['data'=>$modules['text'], 
-                                                'loc'=>'portfolio-'.$pf.'-content',
+                                                ['loc'=>'portfolio-'.$pf.'-content',
                                                 'limit'=>1,
                                                 'mess'=>'Add content'])
                                     <ul class="list-inline item-details">
@@ -309,11 +278,7 @@
             </div>
             @php $pf++; @endphp
         @endwhile
-
-        
-        
     </div>
-    
 
 @endsection
 
@@ -322,6 +287,4 @@
     <script src="{{asset('vendor/muffincms/template/js/jqBootstrapValidation.js')}}"></script>
     <script src="{{asset('vendor/muffincms/template/js/contact_me.js')}}"></script>
     <script src="{{asset('vendor/muffincms/template/js/freelancer.min.js')}}"></script>
-    
 @endsection
-		

@@ -1,10 +1,4 @@
-@php $datactr = 0; @endphp
-@foreach($data as $key => $text)
-	@if(isset($limit) && $datactr >= $limit) @break; @endif
-	@if($text->location != $loc) @continue @endif
-	@php $datactr++; @endphp
-
-
+@foreach(contents('text', $loc) as $key => $text)
 	@if(isset($wrapbegin))
 		{!! $wrapbegin !!}
 	@endif
@@ -28,9 +22,9 @@
 	@endif
 
 @endforeach
-{{-- Add More Link --}}
+{{-- Add More Text --}}
 @if(Auth::check() && Auth::user()->isAdmin())
-	@if(!isset($limit) || (isset($limit) && $datactr < $limit))
+	@if(!isset($limit) || (isset($limit) && count(contents('text', $loc)) < $limit))
 		@include('muffincms::modules.add', 
 						['mod'=>'text', 'loc'=>$loc, 'mess'=> (isset($mess)?$mess:"+"), 'addclass'=>isset($addclass)?$addclass:''])
 	@endif

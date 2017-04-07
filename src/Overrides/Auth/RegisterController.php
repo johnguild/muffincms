@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Http\Controllers\Controller;
+use Johnguild\Muffincms\MVC\Models\Admin;
 use Illuminate\Auth\Events\Registered;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use App\User;
@@ -48,7 +49,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        if(!config('muffincms.registration')) return redirect('/');
+        if(!Admin::isOpenRegistration()) return redirect('/');
         return view('muffincms::users.register');
     }
     
@@ -101,7 +102,7 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
 
-        if(!config('muffincms.registration')) return redirect('/');
+        if(!Admin::isOpenRegistration()) return redirect('/');
         // return $request->all();
         $this->validator($request->all())->validate();
         $request['password'] = bcrypt($request->password);

@@ -11,3 +11,8 @@ function makeSlug( $slug ){
 
 	return $text;
 }
+
+function unSlug( $slug ){
+
+	return str_replace('-', ' ', $slug);
+}

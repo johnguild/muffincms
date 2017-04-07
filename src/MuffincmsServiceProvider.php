@@ -55,6 +55,7 @@ class MuffincmsServiceProvider extends ServiceProvider
     {
         // include __DIR__.'/Routes/web.php';
         // $this->app->make('Johnguild\Muffincms\TestController');
+        require_once __DIR__ . '/Helpers/Contents.php';
         require_once __DIR__ . '/Helpers/Slugger.php';
         require_once __DIR__ . '/Helpers/Setter.php';
         require_once __DIR__ . '/Helpers/Flasher.php';

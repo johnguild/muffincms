@@ -1,9 +1,4 @@
-@php $datactr = 0; @endphp
-@foreach($data as $key => $image)
-	@if(isset($limit) && $datactr >= $limit) @break @endif
-	@if($image->location != $loc) @continue @endif
-	@php $datactr++; @endphp
-	
+@foreach(contents('image', $loc) as $key => $image)
 	@if(isset($wrapbegin))
 		{!! $wrapbegin !!}
 	@endif
@@ -27,7 +22,7 @@
 @endforeach
 {{-- Add more Image --}}
 @if(Auth::check() && Auth::user()->isAdmin() )
-	@if(!isset($limit) || (isset($limit) && $datactr < $limit))
+	@if(!isset($limit) || (isset($limit) && count(contents('image', $loc)) < $limit))
 		@include('muffincms::modules.add', 
 						['mod'=>'image', 'loc'=>$loc, 'mess'=> (isset($mess)?$mess:"+"), 'addclass'=>isset($addclass)?$addclass:''])
 	@endif
