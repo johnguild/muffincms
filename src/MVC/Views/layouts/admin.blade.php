@@ -128,7 +128,7 @@
                 </ul>
             </li> -->
             <li>
-                <a href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+                <a href="{{url('/')}}"><i class="fa fa-fw fa-home"></i> Home</a>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{Auth::user()->getFullName()}} <b class="caret"></b></a>
