@@ -3,9 +3,9 @@
 Auth::routes();
 
 // homepage
-Route::get('/', '\Johnguild\Muffincms\MVC\controllers\PageController@show');
+Route::get('/', '\Johnguild\Muffincms\MVC\Controllers\PageController@show');
 // should the last route
-Route::get('/{page}', '\Johnguild\Muffincms\MVC\controllers\PageController@show');
+Route::get('/{page}', '\Johnguild\Muffincms\MVC\Controllers\PageController@show');
 
 // lets handle httpRequestNotfound
-Route::get('/{wildcard}', '\Johnguild\Muffincms\MVC\controllers\PageController@notfound')->where(['wildcard' => '.*']);
+Route::get('/{wildcard}', '\Johnguild\Muffincms\MVC\Controllers\PageController@notfound')->where(['wildcard' => '.*']);

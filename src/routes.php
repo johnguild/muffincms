@@ -1,10 +1,10 @@
 <?php
 $middleware = array_merge(\Config::get('muffincms.middlewares', ['web','auth']), [
-        '\Johnguild\Muffincms\middlewares\SuperAdmin'
+        '\Johnguild\Muffincms\Middlewares\SuperAdmin'
     ]);
 // $middleware = \Config::get('muffincms.middlewares');
 $prefix = \Config::get('muffincms.prefix', 'admin');
-$namespace = '\Johnguild\Muffincms\MVC\controllers';
+$namespace = '\Johnguild\Muffincms\MVC\Controllers';
 
 // make sure authenticated
 Route::group(compact('middleware', 'prefix',  'namespace'), function () {

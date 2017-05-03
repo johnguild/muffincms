@@ -7,11 +7,11 @@ trait ModelSelector
 	
 	// all available modules/models
 	protected $models = [
-			'text' => 'Johnguild\Muffincms\MVC\models\Text',
-			'link' => 'Johnguild\Muffincms\MVC\models\Link',
-			'image' => 'Johnguild\Muffincms\MVC\models\Image',
-			'page' => 'Johnguild\Muffincms\MVC\models\Page',
-			'viewer' => 'Johnguild\Muffincms\MVC\models\Viewer'
+			'text' => 'Johnguild\Muffincms\MVC\Models\Text',
+			'link' => 'Johnguild\Muffincms\MVC\Models\Link',
+			'image' => 'Johnguild\Muffincms\MVC\Models\Image',
+			'page' => 'Johnguild\Muffincms\MVC\Models\Page',
+			'viewer' => 'Johnguild\Muffincms\MVC\Models\Viewer'
 		];
 
 	protected $notModules = [
