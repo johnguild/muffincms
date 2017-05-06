@@ -1,6 +1,6 @@
 <?php
 
-namespace Johnguild\Muffincms\traits;
+namespace Johnguild\Muffincms\Traits;
 
 trait ModelSelector
 {
