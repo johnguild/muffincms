@@ -26,12 +26,10 @@ trait HrefBuilder
 			case 'create':
 				$url .= '/create';
 				break;
-			case 'store':
-				$url .= '/store';
-				break;
 			case 'edit':
 				$url .= '/'.$this->id.'/edit';
 				break;
+			case 'store':
 			case 'all':
 			default:
 				break;
