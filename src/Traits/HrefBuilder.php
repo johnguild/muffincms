@@ -8,7 +8,7 @@ trait HrefBuilder
 	public function href($type='all', $prefix='', $postfix='')
 	{
 
-		$url = url();
+		$url = url('');
 		if(!empty($prefix)){
 			if(is_array($prefix))
 				$url .= implode('/', $prefix);
