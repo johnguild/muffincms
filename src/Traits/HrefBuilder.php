@@ -5,10 +5,18 @@ namespace Johnguild\Muffincms\Traits;
 trait HrefBuilder
 {
 
-	public function href($type='all')
+	public function href($type='all', $prefix='', $postfix='')
 	{
 
-		$url = url($this->href);
+		$url = url();
+		if(!empty($prefix)){
+			if(is_array($prefix))
+				$url .= implode('/', $prefix);
+			else
+				$url .= '/'.$prefix;
+		}
+		$url .= '/'.$this->href;
+
 		switch (strtolower($type)) {
 			case 'show':
 			case 'update':
@@ -28,6 +36,14 @@ trait HrefBuilder
 			default:
 				break;
 		}
+
+		if(!empty($postfix)){
+			if(is_array($postfix))
+				$url .= implode('/', $postfix);
+			else
+				$url .= '/'.$postfix;
+		}
+
 		return $url;
 	}
 
