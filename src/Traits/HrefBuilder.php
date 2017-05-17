@@ -11,7 +11,7 @@ trait HrefBuilder
 		$url = url('');
 		if(!empty($prefix)){
 			if(is_array($prefix))
-				$url .= implode('/', $prefix);
+				$url .= '/'.implode('/', $prefix);
 			else
 				$url .= '/'.$prefix;
 		}
@@ -37,7 +37,7 @@ trait HrefBuilder
 
 		if(!empty($postfix)){
 			if(is_array($postfix))
-				$url .= implode('/', $postfix);
+				$url .= '/'.implode('/', $postfix);
 			else
 				$url .= '/'.$postfix;
 		}
